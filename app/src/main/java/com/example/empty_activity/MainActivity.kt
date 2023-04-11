@@ -1,4 +1,4 @@
-package com.example.victoria_churilova
+package com.example.empty_activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

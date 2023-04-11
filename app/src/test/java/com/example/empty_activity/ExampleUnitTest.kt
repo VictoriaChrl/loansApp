@@ -1,4 +1,4 @@
-package com.example.victoria_churilova
+package com.example.empty_activity
 
 import org.junit.Test
 
