@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">empty_project</string>
+    <string name="app_name">Final project</string>
+    <!-- fragment loan history -->
+    <string name="history_title">Займы</string>
+    <!-- menu info -->
+    <string name="watch_info">Посмотреть инструкцию</string>
+    <!-- fragment loan creation -->
+    <string name="add_button_text">Получить займ</string>
 </resources>

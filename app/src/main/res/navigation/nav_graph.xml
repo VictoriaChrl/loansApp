@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/authorizationFragment">
+
+
+    <fragment
+        android:id="@+id/authorizationFragment"
+        android:name="com.example.empty_project.ui.AuthorizationFragment"
+        android:label="AuthorizationFragment">
+        <action
+            android:id="@+id/action_authorizationFragment_to_loanHistoryFragment"
+            app:destination="@id/loanHistoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loanCreationFragment"
+        android:name="com.example.empty_project.ui.LoanCreationFragment"
+        android:label="LoanCreationFragment" />
+    <fragment
+        android:id="@+id/loanDetailsFragment"
+        android:name="com.example.empty_project.ui.LoanDetailsFragment"
+        android:label="LoanDetailsFragment" />
+    <fragment
+        android:id="@+id/loanHistoryFragment"
+        android:name="com.example.empty_project.ui.LoanHistoryFragment"
+        android:label="LoanHistoryFragment">
+        <action
+            android:id="@+id/action_loanHistoryFragment_to_loanDetailsFragment"
+            app:destination="@id/loanDetailsFragment" />
+        <action
+            android:id="@+id/action_loanHistoryFragment_to_loanCreationFragment"
+            app:destination="@id/loanCreationFragment" />
+    </fragment>
+</navigation>

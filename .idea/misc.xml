@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/user/Desktop/project/2023_q2_churilova/app/src/main/res/drawable/ic_add.xml" value="0.132" />
+        <entry key="..\:/Users/user/Desktop/project/2023_q2_churilova/app/src/main/res/drawable/ic_divider.xml" value="0.1945" />
+        <entry key="..\:/Users/user/Desktop/project/2023_q2_churilova/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1955" />
+        <entry key="..\:/Users/user/Desktop/project/2023_q2_churilova/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/user/Desktop/project/2023_q2_churilova/app/src/main/res/layout/fragment_authorization.xml" value="0.22" />
+        <entry key="..\:/Users/user/Desktop/project/2023_q2_churilova/app/src/main/res/layout/fragment_loan_creation.xml" value="0.25" />
+        <entry key="..\:/Users/user/Desktop/project/2023_q2_churilova/app/src/main/res/layout/fragment_loan_details.xml" value="0.1" />
+        <entry key="..\:/Users/user/Desktop/project/2023_q2_churilova/app/src/main/res/layout/fragment_loan_history.xml" value="0.25" />
+        <entry key="..\:/Users/user/Desktop/project/2023_q2_churilova/app/src/main/res/layout/item_loan.xml" value="0.33" />
+        <entry key="..\:/Users/user/Desktop/project/2023_q2_churilova/app/src/main/res/menu/menu_info.xml" value="0.209009009009009" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
