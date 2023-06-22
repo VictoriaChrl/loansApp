@@ -1,6 +1,7 @@
 package com.example.empty_project.data.api
 
 import com.example.empty_project.data.model.AuthModel
+import com.example.empty_project.data.model.LoanConditionsModel
 import com.example.empty_project.data.model.LoanModel
 import com.example.empty_project.data.model.NewLoanModel
 import com.example.empty_project.domain.entity.NewLoan
@@ -34,4 +35,8 @@ interface LoansApi {
     @Headers("Accept: */*", "Content-Type: application/json")
     @POST("loans")
     suspend fun createLoan(@Body newLoan: NewLoanModel, @Header("Authorization") token: String?): ResponseBody
+
+    @Headers("Accept: */*")
+    @GET("loans/conditions")
+    suspend fun getLoanConditions(@Header("Authorization") token: String?): LoanConditionsModel
 }

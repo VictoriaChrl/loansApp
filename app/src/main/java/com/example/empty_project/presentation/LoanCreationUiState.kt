@@ -1,20 +1,24 @@
 package com.example.empty_project.presentation
 
+import com.example.empty_project.domain.entity.LoanConditions
+
 sealed interface LoanCreationUiState {
 
     object Initial : LoanCreationUiState
 
-    object Loading : LoanCreationUiState
+    object LoadingConditions : LoanCreationUiState
 
-    data class Complete(val message: String) : LoanCreationUiState
+    data class CompleteLoadingConditions(val loanConditions: LoanConditions) : LoanCreationUiState
 
-//    data class Error(val message: String) : AuthorizationUiState
+    object LoadingLoanCreation : LoanCreationUiState
+
+    data class CompleteLoanCreation(val message: String) : LoanCreationUiState
 
     sealed interface Error : LoanCreationUiState {
 
         object NoInternet : Error
 
-        object Unknown : Error
+        data class Unknown(val message: String) : Error
     }
 
 }

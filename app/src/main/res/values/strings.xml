@@ -6,4 +6,12 @@
     <string name="watch_info">Посмотреть инструкцию</string>
     <!-- fragment loan creation -->
     <string name="add_button_text">Получить займ</string>
+    <string name="text_conditions_title">Условия взятия займа</string>
+    <string name="text_conditions_maxAmount">Вы можете взять не выходя из дома</string>
+    <string name="text_conditions_period">Сроком на</string>
+    <string name="text_conditions_percent">Ставка</string>
+    <string name="edit_hint_name">Имя</string>
+    <string name="edit_hint_surname">Фамилия</string>
+    <string name="edit_hint_amount">Сумма займа</string>
+    <string name="edit_hint_phone_number">Номер телефона</string>
 </resources>

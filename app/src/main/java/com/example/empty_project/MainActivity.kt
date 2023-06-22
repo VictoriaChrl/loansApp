@@ -23,20 +23,22 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainer) as NavHostFragment
-        val navController = navHostFragment.navController
-        val mainGraph = navController.navInflater.inflate(R.navigation.nav_graph)
+        if(savedInstanceState==null){
+            val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainer) as NavHostFragment
+            val navController = navHostFragment.navController
+            val mainGraph = navController.navInflater.inflate(R.navigation.nav_graph)
 
-        val token = sharPrefManager.getToken()
+            val token = sharPrefManager.getToken()
 
-        mainGraph.setStartDestination(
-            when (token) {
-                null -> R.id.authorizationFragment
-                else -> R.id.loanHistoryFragment
-            }
-        )
+            mainGraph.setStartDestination(
+                when (token) {
+                    null -> R.id.authorizationFragment
+                    else -> R.id.loanHistoryFragment
+                }
+            )
+            navController.graph = mainGraph
+        }
 
-        navController.graph = mainGraph
     }
 
     override fun androidInjector(): AndroidInjector<Any> {

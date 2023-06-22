@@ -21,25 +21,18 @@ class AuthorizationViewModel @Inject constructor(
         MutableLiveData(AuthorizationUiState.Initial)
     val state: LiveData<AuthorizationUiState> = _state
 
-    private val handleError = CoroutineExceptionHandler { _, exception ->
-        when (exception) {
-            is ConnectException,
-            is UnknownHostException,
-            is NoRouteToHostException -> _state.value = AuthorizationUiState.Error.NoInternet
-
-            else -> _state.value =
-                AuthorizationUiState.Error.AlreadyExist
-        }
-    }
-
     fun registerUser(name: String, password: String) {
         _state.value = AuthorizationUiState.Loading
-        viewModelScope.launch(Dispatchers.IO+handleError) {
-            registrationUseCase(
-                name = name,
-                password = password
-            )
-            onComplete()
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                registrationUseCase(
+                    name = name,
+                    password = password
+                )
+                onComplete()
+            } catch (exception: Exception) {
+                handleException(exception)
+            }
         }
     }
 
@@ -47,4 +40,13 @@ class AuthorizationViewModel @Inject constructor(
         _state.postValue(AuthorizationUiState.Complete("Регистрация прошла успешно!"))
     }
 
+    private fun handleException(exception: Exception){
+        when (exception) {
+            is ConnectException,
+            is UnknownHostException,
+            is NoRouteToHostException -> _state.postValue(AuthorizationUiState.Error.NoInternet)
+
+            else -> _state.postValue(AuthorizationUiState.Error.AlreadyExist)
+        }
+    }
 }

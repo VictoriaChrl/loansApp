@@ -3,6 +3,7 @@ package com.example.empty_project.di
 import com.example.empty_project.domain.repository.LoanRepository
 import com.example.empty_project.domain.repository.UserRepository
 import com.example.empty_project.domain.usecase.CreateLoanUseCase
+import com.example.empty_project.domain.usecase.GetLoanConditionsUseCase
 import com.example.empty_project.domain.usecase.LoginUseCase
 import com.example.empty_project.domain.usecase.RegistrationUseCase
 import dagger.Module
@@ -12,17 +13,22 @@ import dagger.Provides
 class DomainModule {
 
     @Provides
-    fun bindRegistrationUseCase(repository: UserRepository): RegistrationUseCase {
+    fun provideRegistrationUseCase(repository: UserRepository): RegistrationUseCase {
         return RegistrationUseCase(repository)
     }
 
     @Provides
-    fun bindLoginUseCase(repository: UserRepository): LoginUseCase {
+    fun provideLoginUseCase(repository: UserRepository): LoginUseCase {
         return LoginUseCase(repository)
     }
 
     @Provides
-    fun bindCreateLoanUseCase(repository: LoanRepository): CreateLoanUseCase {
+    fun provideCreateLoanUseCase(repository: LoanRepository): CreateLoanUseCase {
         return CreateLoanUseCase(repository)
+    }
+
+    @Provides
+    fun provideGetLoanConditionsUseCase(repository: LoanRepository): GetLoanConditionsUseCase {
+        return GetLoanConditionsUseCase(repository)
     }
 }

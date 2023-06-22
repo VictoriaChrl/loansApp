@@ -16,7 +16,11 @@
     <fragment
         android:id="@+id/loanCreationFragment"
         android:name="com.example.empty_project.ui.LoanCreationFragment"
-        android:label="LoanCreationFragment" />
+        android:label="LoanCreationFragment" >
+        <action
+            android:id="@+id/action_loanCreationFragment_to_loanHistoryFragment"
+            app:destination="@id/loanHistoryFragment" />
+    </fragment>
     <fragment
         android:id="@+id/loanDetailsFragment"
         android:name="com.example.empty_project.ui.LoanDetailsFragment"

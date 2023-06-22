@@ -6,12 +6,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.empty_project.R
 import com.example.empty_project.databinding.FragmentLoanCreationBinding
 import com.example.empty_project.domain.entity.NewLoan
-import com.example.empty_project.presentation.AuthorizationUiState
 import com.example.empty_project.presentation.LoanCreationUiState
 import com.example.empty_project.presentation.LoanCreationViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -47,14 +49,16 @@ class LoanCreationFragment : Fragment() {
 
         viewModel = ViewModelProvider(this, viewModelFactory)[LoanCreationViewModel::class.java]
 
+        viewModel.getLoanConditions()
+
         binding.apply {
             addButton.setOnClickListener {
                 val newLoan = NewLoan(
                     amount = editTextAmount.text.toString().toLong(),
                     firstName = editTextFirstName.text.toString(),
                     lastName = editTextLastName.text.toString(),
-                    percent = editTextPercent.text.toString().toDouble(),
-                    period = editTextPeriod.text.toString().toInt(),
+                    percent = percent.text.toString().toDouble(),
+                    period = period.text.toString().toInt(),
                     phoneNumber = editTextPhoneNumber.text.toString()
                 )
                 Log.v("newLoan", newLoan.toString())
@@ -68,22 +72,77 @@ class LoanCreationFragment : Fragment() {
     private fun processState(state: LoanCreationUiState) {
         when (state) {
             is LoanCreationUiState.Initial -> Unit
-            is LoanCreationUiState.Loading -> renderLoadingState()
-            is LoanCreationUiState.Complete -> renderCompleteState()
-            is LoanCreationUiState.Error -> renderErrorState()
+            LoanCreationUiState.LoadingConditions -> renderLoadingConditionsState()
+            LoanCreationUiState.LoadingLoanCreation -> renderLoadingLoanCreationState()
+            is LoanCreationUiState.CompleteLoadingConditions -> renderCompleteLoadingConditionsState(state)
+            is LoanCreationUiState.CompleteLoanCreation -> renderCompleteLoanCreationState(state)
+            is LoanCreationUiState.Error.NoInternet -> renderErrorNoInternetState()
+            is LoanCreationUiState.Error.Unknown -> renderErrorUnknownState(state)
         }
     }
 
-    private fun renderLoadingState() {
-
+    private fun renderLoadingConditionsState() {
+        val shimmer = AnimationUtils.loadAnimation(requireContext(), R.anim.shimmer)
+        binding.apply {
+            shimmerAmount.startAnimation(shimmer)
+            shimmerPeriod.startAnimation(shimmer)
+        }
     }
 
-    private fun renderCompleteState() {
-
+    private fun renderLoadingLoanCreationState() {
+        binding.progressBar.isVisible = true
+        binding.addButton.isEnabled = false
+        binding.editTextFirstName.isEnabled = false
+        binding.editTextLastName.isEnabled = false
+        binding.editTextAmount.isEnabled = false
+        binding.editTextPhoneNumber.isEnabled = false
     }
 
-    private fun renderErrorState() {
+    private fun renderCompleteLoadingConditionsState(state: LoanCreationUiState.CompleteLoadingConditions) {
+        binding.apply {
+            shimmerAmount.animation = null
+            shimmerPeriod.animation = null
 
+            maxAmount.text = state.loanConditions.maxAmount.toString()
+            period.text = state.loanConditions.period.toString()
+            percent.text = state.loanConditions.percent.toString()
+        }
+    }
+
+    private fun renderCompleteLoanCreationState(state: LoanCreationUiState.CompleteLoanCreation) {
+        binding.progressBar.isVisible = false
+        showSnackbar(state.message)
+        findNavController().navigate(
+            LoanCreationFragmentDirections.actionLoanCreationFragmentToLoanHistoryFragment()
+        )
+    }
+
+    private fun renderErrorNoInternetState() {
+        binding.apply {
+            shimmerAmount.animation = null
+            shimmerPeriod.animation = null
+            progressBar.isVisible = false
+            addButton.isEnabled = true
+            editTextFirstName.isEnabled = true
+            editTextLastName.isEnabled = true
+            editTextAmount.isEnabled = true
+            editTextPhoneNumber.isEnabled = true
+            showSnackbar("Проверьте подключение к интернету")
+        }
+    }
+
+    private fun renderErrorUnknownState(state: LoanCreationUiState.Error.Unknown) {
+        binding.apply {
+            shimmerAmount.animation = null
+            shimmerPeriod.animation = null
+            progressBar.isVisible = false
+            addButton.isEnabled = true
+            editTextFirstName.isEnabled = true
+            editTextLastName.isEnabled = true
+            editTextAmount.isEnabled = true
+            editTextPhoneNumber.isEnabled = true
+            showSnackbar(state.message)
+        }
     }
 
     private fun showSnackbar(message: String) {

@@ -8,8 +8,6 @@ sealed interface AuthorizationUiState {
 
     data class Complete(val message: String) : AuthorizationUiState
 
-//    data class Error(val message: String) : AuthorizationUiState
-
     sealed interface Error : AuthorizationUiState {
 
         object NoInternet : Error
