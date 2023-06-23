@@ -1,7 +1,20 @@
 <resources>
     <string name="app_name">Final project</string>
+    <!-- fragment register -->
+    <string name="register_title">Регистрация</string>
+    <string name="edit_login">Логин</string>
+    <string name="edit_password">Пароль</string>
+    <!-- fragment login -->
+    <string name="login_title">Вход</string>
+    <string name="login_button">Войти</string>
     <!-- fragment loan history -->
     <string name="history_title">Займы</string>
+    <string name="error_internet">Проверьте подключение к интернету</string>
+    <string name="loan_amount_holder">%1$s РУБ</string>
+    <!-- loan -->
+    <string name="loan_status_approved">ОДОБРЕН</string>
+    <string name="loan_status_rejected">ОТКЛОНЁН</string>
+    <string name="loan_status_registered">ПРИНЯТ</string>
     <!-- menu info -->
     <string name="watch_info">Посмотреть инструкцию</string>
     <!-- fragment loan creation -->
@@ -14,4 +27,12 @@
     <string name="edit_hint_surname">Фамилия</string>
     <string name="edit_hint_amount">Сумма займа</string>
     <string name="edit_hint_phone_number">Номер телефона</string>
+    <string name="loans_empty">У вас пока нет займов</string>
+    <string name="history_unknown_error">Что-то пошло не так</string>
+    <string name="error_user_already_exists">Пользователь уже существует</string>
+    <string name="edit_text_empty">Заполните данные</string>
+    <string name="edit_text_amount_incorrect">Укажите сумму займа в соответствии с условиями</string>
+    <string name="try_again">Поробуйте еще раз</string>
+
+
 </resources>

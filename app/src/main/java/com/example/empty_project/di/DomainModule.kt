@@ -2,10 +2,7 @@ package com.example.empty_project.di
 
 import com.example.empty_project.domain.repository.LoanRepository
 import com.example.empty_project.domain.repository.UserRepository
-import com.example.empty_project.domain.usecase.CreateLoanUseCase
-import com.example.empty_project.domain.usecase.GetLoanConditionsUseCase
-import com.example.empty_project.domain.usecase.LoginUseCase
-import com.example.empty_project.domain.usecase.RegistrationUseCase
+import com.example.empty_project.domain.usecase.*
 import dagger.Module
 import dagger.Provides
 
@@ -30,5 +27,10 @@ class DomainModule {
     @Provides
     fun provideGetLoanConditionsUseCase(repository: LoanRepository): GetLoanConditionsUseCase {
         return GetLoanConditionsUseCase(repository)
+    }
+
+    @Provides
+    fun provideGetAllLoansUseCase(repository: LoanRepository): GetAllLoansUseCase {
+        return GetAllLoansUseCase(repository)
     }
 }

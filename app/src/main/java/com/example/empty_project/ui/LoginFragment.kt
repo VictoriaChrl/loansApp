@@ -11,20 +11,21 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.empty_project.R
 import com.example.empty_project.databinding.FragmentAuthorizationBinding
+import com.example.empty_project.databinding.FragmentUserLoginBinding
 import com.example.empty_project.presentation.AuthorizationUiState
 import com.example.empty_project.presentation.AuthorizationViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-class AuthorizationFragment : Fragment() {
+class LoginFragment : Fragment() {
 
-    private var _binding: FragmentAuthorizationBinding? = null
+    private var _binding: FragmentUserLoginBinding? = null
     private val binding get() = _binding!!
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    lateinit var viewModel: AuthorizationViewModel
+    lateinit var viewModel: LoginViewModel
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
@@ -37,7 +38,7 @@ class AuthorizationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
-        _binding = FragmentAuthorizationBinding.inflate(inflater, container, false)
+        _binding = FragmentUserLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -111,4 +112,3 @@ class AuthorizationFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-}

@@ -10,6 +10,6 @@ data class Loan(
 	val period: Int,
 	val phoneNumber: String,
 	val id: Long,
-	val date: LocalDateTime,
+	val date: String,
 	val status: LoanStatus
 )

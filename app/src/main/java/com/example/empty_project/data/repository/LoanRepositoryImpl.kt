@@ -16,9 +16,13 @@ class LoanRepositoryImpl @Inject constructor(
     private val sharPrefManager: SharPrefManagerImpl
 ) : LoanRepository {
 
-    override suspend fun getAll(): List<Loan> =
-        loansApi.getAll()
+    override suspend fun getAllLoans(): List<Loan> {
+        val token = sharPrefManager.getToken()
+        val loans = loansApi.getAllLoans(token)
+        Log.v("loansRepo", loans.toString())
+        return loans
             .map { loan -> converterLoan.convertLoan(loan) }
+    }
 
     override suspend fun getById(id: Long): Loan =
         converterLoan.convertLoan(loansApi.getLoanById(id))

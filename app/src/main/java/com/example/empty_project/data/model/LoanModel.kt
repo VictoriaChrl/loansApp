@@ -12,7 +12,7 @@ data class LoanModel(
 	val period: Int,
 	val phoneNumber: String,
 	val id: Long,
-	val date: LocalDateTime,
+	val date: String,
 
 	@field:SerializedName("state")
 	val status: LoanStatus

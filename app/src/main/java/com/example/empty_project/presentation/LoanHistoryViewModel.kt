@@ -1,7 +1,7 @@
 package com.example.empty_project.presentation
 
 import androidx.lifecycle.*
-import com.example.empty_project.domain.usecase.LoginUseCase
+import com.example.empty_project.domain.usecase.GetAllLoansUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.net.ConnectException
@@ -10,19 +10,18 @@ import java.net.UnknownHostException
 import javax.inject.Inject
 
 class LoanHistoryViewModel @Inject constructor(
-    private val loginUseCase: LoginUseCase
+    private val getAllLoansUseCase: GetAllLoansUseCase
 ) : ViewModel() {
 
     private val _state: MutableLiveData<LoanHistoryUiState> =
         MutableLiveData(LoanHistoryUiState.Initial)
     val state: LiveData<LoanHistoryUiState> = _state
 
-    fun login() {
+    fun getLoans() {
         _state.value = LoanHistoryUiState.Loading
         viewModelScope.launch(Dispatchers.IO) {
            try{
-               loginUseCase()
-               _state.postValue(LoanHistoryUiState.CompleteLogin)
+               _state.postValue(LoanHistoryUiState.Complete(getAllLoansUseCase()))
            }catch (exception: Exception){
                handleException(exception)
            }
@@ -35,7 +34,7 @@ class LoanHistoryViewModel @Inject constructor(
             is UnknownHostException,
             is NoRouteToHostException -> _state.postValue(LoanHistoryUiState.Error.NoInternet)
 
-            else -> _state.postValue(LoanHistoryUiState.Error.Unknown(exception.message.toString()))
+            else -> _state.postValue(LoanHistoryUiState.Error.Unknown)
         }
     }
 }

@@ -25,7 +25,7 @@ class GetLoanByIdUseCase(private val repository: LoanRepository) {
 			period = 365,
 			phoneNumber = "89132283228",
 			id = 13373228,
-			date = LocalDateTime.now(),
+			date = "LocalDateTime.now().toString()",
 			status = LoanStatus.APPROVED,
 		)
 }

@@ -6,7 +6,7 @@ import com.example.empty_project.domain.entity.NewLoan
 
 interface LoanRepository {
 
-    suspend fun getAll(): List<Loan>
+    suspend fun getAllLoans(): List<Loan>
 
     suspend fun getById(id: Long): Loan
 

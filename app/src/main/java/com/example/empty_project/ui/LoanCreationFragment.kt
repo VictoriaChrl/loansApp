@@ -48,21 +48,37 @@ class LoanCreationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(this, viewModelFactory)[LoanCreationViewModel::class.java]
-
-        viewModel.getLoanConditions()
+//
+//        viewModel.getLoanConditions()
 
         binding.apply {
             addButton.setOnClickListener {
-                val newLoan = NewLoan(
-                    amount = editTextAmount.text.toString().toLong(),
-                    firstName = editTextFirstName.text.toString(),
-                    lastName = editTextLastName.text.toString(),
-                    percent = percent.text.toString().toDouble(),
-                    period = period.text.toString().toInt(),
-                    phoneNumber = editTextPhoneNumber.text.toString()
-                )
-                Log.v("newLoan", newLoan.toString())
-                viewModel.createLoan(newLoan)
+                if (maxAmount.text?.isBlank() == true || percent.text?.isBlank() == true || period.text?.isBlank() == true) {
+                    showSnackbar(getString(R.string.try_again))
+                    viewModel.getLoanConditions()
+                } else if (editTextAmount.text?.isBlank() == true ||
+                    editTextFirstName.text?.isBlank() == true ||
+                    editTextLastName.text?.isBlank() == true ||
+                    editTextPhoneNumber.text?.isBlank() == true
+                ) {
+                    showSnackbar(getString(R.string.edit_text_empty))
+                } else if (editTextAmount.text.toString().toInt() > maxAmount.text.toString()
+                        .toInt() ||
+                    editTextAmount.text.toString().toInt() < 0
+                ) {
+                    showSnackbar(getString(R.string.edit_text_amount_incorrect))
+                } else {
+                    val newLoan = NewLoan(
+                        amount = editTextAmount.text.toString().toLong(),
+                        firstName = editTextFirstName.text.toString(),
+                        lastName = editTextLastName.text.toString(),
+                        percent = percent.text.toString().toDouble(),
+                        period = period.text.toString().toInt(),
+                        phoneNumber = editTextPhoneNumber.text.toString()
+                    )
+                    Log.v("newLoan", newLoan.toString())
+                    viewModel.createLoan(newLoan)
+                }
             }
         }
 
@@ -71,10 +87,12 @@ class LoanCreationFragment : Fragment() {
 
     private fun processState(state: LoanCreationUiState) {
         when (state) {
-            is LoanCreationUiState.Initial -> Unit
+            is LoanCreationUiState.Initial -> viewModel.getLoanConditions()
             LoanCreationUiState.LoadingConditions -> renderLoadingConditionsState()
             LoanCreationUiState.LoadingLoanCreation -> renderLoadingLoanCreationState()
-            is LoanCreationUiState.CompleteLoadingConditions -> renderCompleteLoadingConditionsState(state)
+            is LoanCreationUiState.CompleteLoadingConditions -> renderCompleteLoadingConditionsState(
+                state
+            )
             is LoanCreationUiState.CompleteLoanCreation -> renderCompleteLoanCreationState(state)
             is LoanCreationUiState.Error.NoInternet -> renderErrorNoInternetState()
             is LoanCreationUiState.Error.Unknown -> renderErrorUnknownState(state)
@@ -86,6 +104,7 @@ class LoanCreationFragment : Fragment() {
         binding.apply {
             shimmerAmount.startAnimation(shimmer)
             shimmerPeriod.startAnimation(shimmer)
+            shimmerPercent.startAnimation(shimmer)
         }
     }
 
@@ -100,8 +119,18 @@ class LoanCreationFragment : Fragment() {
 
     private fun renderCompleteLoadingConditionsState(state: LoanCreationUiState.CompleteLoadingConditions) {
         binding.apply {
-            shimmerAmount.animation = null
-            shimmerPeriod.animation = null
+            shimmerAmount.apply {
+                animation = null
+                isVisible = false
+            }
+            shimmerPeriod.apply {
+                animation = null
+                isVisible = false
+            }
+            shimmerPercent.apply {
+                animation = null
+                isVisible = false
+            }
 
             maxAmount.text = state.loanConditions.maxAmount.toString()
             period.text = state.loanConditions.period.toString()
@@ -119,15 +148,13 @@ class LoanCreationFragment : Fragment() {
 
     private fun renderErrorNoInternetState() {
         binding.apply {
-            shimmerAmount.animation = null
-            shimmerPeriod.animation = null
             progressBar.isVisible = false
             addButton.isEnabled = true
             editTextFirstName.isEnabled = true
             editTextLastName.isEnabled = true
             editTextAmount.isEnabled = true
             editTextPhoneNumber.isEnabled = true
-            showSnackbar("Проверьте подключение к интернету")
+            showSnackbar(getString(R.string.error_internet))
         }
     }
 
@@ -135,6 +162,7 @@ class LoanCreationFragment : Fragment() {
         binding.apply {
             shimmerAmount.animation = null
             shimmerPeriod.animation = null
+            shimmerPercent.animation = null
             progressBar.isVisible = false
             addButton.isEnabled = true
             editTextFirstName.isEnabled = true

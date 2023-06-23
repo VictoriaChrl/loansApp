@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.empty_project.domain.usecase.LoginUseCase
 import com.example.empty_project.domain.usecase.RegistrationUseCase
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +15,8 @@ import java.net.UnknownHostException
 import javax.inject.Inject
 
 class AuthorizationViewModel @Inject constructor(
-    private val registrationUseCase: RegistrationUseCase
+    private val registrationUseCase: RegistrationUseCase,
+    private val loginUseCase: LoginUseCase
 ) : ViewModel() {
 
     private val _state: MutableLiveData<AuthorizationUiState> =
@@ -31,6 +33,16 @@ class AuthorizationViewModel @Inject constructor(
                 )
                 onComplete()
             } catch (exception: Exception) {
+                handleException(exception)
+            }
+        }
+    }
+
+    fun login() {
+        viewModelScope.launch(Dispatchers.IO) {
+            try{
+                loginUseCase()
+            }catch (exception: Exception){
                 handleException(exception)
             }
         }
