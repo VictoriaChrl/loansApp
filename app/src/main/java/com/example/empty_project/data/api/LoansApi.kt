@@ -16,14 +16,6 @@ private const val AUTH_TOKEN =
 
 interface LoansApi {
 
-    @Headers(AUTH_TOKEN)
-    @GET("loans/all")
-    suspend fun getAll(): List<LoanModel>
-
-    @Headers(AUTH_TOKEN)
-    @GET("loans/{id}")
-    suspend fun getLoanById(@Path("id") loanId: Long): LoanModel
-
     @Headers("Accept: */*", "Content-Type: application/json")
     @POST("registration")
     suspend fun registerUser(@Body auth: AuthModel): ResponseBody
@@ -43,4 +35,8 @@ interface LoansApi {
     @Headers("Accept: */*")
     @GET("loans/all")
     suspend fun getAllLoans(@Header("Authorization") token: String?): Array<LoanModel>
+
+    @Headers("Accept: */*")
+    @GET("loans/{id}")
+    suspend fun getLoanById(@Header("Authorization") token: String?, @Path("id") loanId: Long): LoanModel
 }

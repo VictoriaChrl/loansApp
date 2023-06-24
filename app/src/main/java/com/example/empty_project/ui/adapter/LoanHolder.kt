@@ -8,11 +8,13 @@ import com.example.empty_project.domain.entity.formatLoanStatus
 
 class LoanHolder(
     private val binding: ItemLoanBinding,
-    private val onItemClicked: (id: Loan) -> Unit
+    private val onItemClicked: (id: Long) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
 
+
     fun bind(loan: Loan) {
-//        binding.delete.setOnClickListener { onItemClicked(loan) }
+        binding.root.setOnClickListener { onItemClicked(loan.id) }
+
         binding.apply {
             amountText.text =
                 itemView.context.getString(R.string.loan_amount_holder, loan.amount.toString())

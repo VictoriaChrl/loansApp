@@ -6,7 +6,7 @@ class LoginUseCase(
     private val repository: UserRepository
 ) {
 
-    suspend operator fun invoke() {
-        repository.loginUser()
+    suspend operator fun invoke(name: String, password: String) {
+        repository.loginUser(name, password)
     }
 }

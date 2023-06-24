@@ -2,7 +2,6 @@ package com.example.empty_project.ui
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,11 +12,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.empty_project.R
 import com.example.empty_project.databinding.FragmentLoanHistoryBinding
 import com.example.empty_project.domain.entity.Loan
-import com.example.empty_project.presentation.AuthorizationUiState
 import com.example.empty_project.presentation.LoanHistoryUiState
 import com.example.empty_project.presentation.LoanHistoryViewModel
 import com.example.empty_project.ui.adapter.LoanHistoryAdapter
-import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -85,7 +82,7 @@ class LoanHistoryFragment : Fragment() {
 
     private fun renderCompleteState(state: LoanHistoryUiState.Complete) {
         binding.progressBar.isVisible = false
-        if(state.list.isEmpty()){
+        if (state.list.isEmpty()) {
             binding.errorText.text = getString(R.string.loans_empty)
             binding.errorText.isVisible = true
         }
@@ -93,13 +90,17 @@ class LoanHistoryFragment : Fragment() {
     }
 
     private fun loadLoanList(list: List<Loan>) {
-        val loanAdapter = LoanHistoryAdapter { loan -> toLoanDetails(loan) }
+        val loanAdapter = LoanHistoryAdapter { id -> toLoanDetails(id) }
         binding.historyList.adapter = loanAdapter
         loanAdapter.submitList(list)
     }
 
-    private fun toLoanDetails(loan: Loan) {
-
+    private fun toLoanDetails(id: Long) {
+        findNavController().navigate(
+            LoanHistoryFragmentDirections.actionLoanHistoryFragmentToLoanDetailsFragment(
+                id
+            )
+        )
     }
 
     private fun renderErrorNoInternetState() {
@@ -115,7 +116,7 @@ class LoanHistoryFragment : Fragment() {
         binding.apply {
             progressBar.isVisible = false
             errorText.isVisible = true
-            errorText.text = getString(R.string.history_unknown_error)
+            errorText.text = getString(R.string.unknown_error)
             buttonUpdate.isVisible = true
         }
     }

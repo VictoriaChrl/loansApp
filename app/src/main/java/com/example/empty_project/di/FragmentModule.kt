@@ -1,8 +1,6 @@
 package com.example.empty_project.di
 
-import com.example.empty_project.ui.AuthorizationFragment
-import com.example.empty_project.ui.LoanCreationFragment
-import com.example.empty_project.ui.LoanHistoryFragment
+import com.example.empty_project.ui.*
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -18,4 +16,10 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     abstract fun contributeLoanCreationFragment(): LoanCreationFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeLoginFragment(): LoginFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeLoanDetailsFragment(): LoanDetailsFragment
 }

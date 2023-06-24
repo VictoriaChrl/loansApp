@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.empty_project.domain.usecase.LoginUseCase
 import com.example.empty_project.domain.usecase.RegistrationUseCase
-import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.net.ConnectException
@@ -14,19 +13,19 @@ import java.net.NoRouteToHostException
 import java.net.UnknownHostException
 import javax.inject.Inject
 
-class AuthorizationViewModel @Inject constructor(
-    private val registrationUseCase: RegistrationUseCase
+class LoginViewModel @Inject constructor(
+    private val loginUseCase: LoginUseCase
 ) : ViewModel() {
 
-    private val _state: MutableLiveData<AuthorizationUiState> =
-        MutableLiveData(AuthorizationUiState.Initial)
-    val state: LiveData<AuthorizationUiState> = _state
+    private val _state: MutableLiveData<LoginUiState> =
+        MutableLiveData(LoginUiState.Initial)
+    val state: LiveData<LoginUiState> = _state
 
-    fun registerUser(name: String, password: String) {
-        _state.value = AuthorizationUiState.Loading
+    fun loginUser(name: String, password: String) {
+        _state.value = LoginUiState.Loading
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                registrationUseCase(
+                loginUseCase(
                     name = name,
                     password = password
                 )
@@ -38,16 +37,16 @@ class AuthorizationViewModel @Inject constructor(
     }
 
     private fun onComplete() {
-        _state.postValue(AuthorizationUiState.Complete("Регистрация прошла успешно!"))
+        _state.postValue(LoginUiState.Complete)
     }
 
-    private fun handleException(exception: Exception){
+    private fun handleException(exception: Exception) {
         when (exception) {
             is ConnectException,
             is UnknownHostException,
-            is NoRouteToHostException -> _state.postValue(AuthorizationUiState.Error.NoInternet)
+            is NoRouteToHostException -> _state.postValue(LoginUiState.Error.NoInternet)
 
-            else -> _state.postValue(AuthorizationUiState.Error.AlreadyExist)
+            else -> _state.postValue(LoginUiState.Error.Unknown)
         }
     }
 }

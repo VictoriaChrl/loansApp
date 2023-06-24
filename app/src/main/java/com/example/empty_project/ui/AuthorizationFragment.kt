@@ -47,6 +47,11 @@ class AuthorizationFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory)[AuthorizationViewModel::class.java]
 
         binding.apply {
+            clickableTextAlreadyHaveAccount.setOnClickListener {
+                findNavController().navigate(
+                    AuthorizationFragmentDirections.actionAuthorizationFragmentToLoginFragment()
+                )
+            }
             button.setOnClickListener {
                 if (editTextName.text?.isBlank() == true || editTextPassword.text?.isBlank() == true) {
                     showSnackbar(getString(R.string.edit_text_empty))
@@ -81,9 +86,8 @@ class AuthorizationFragment : Fragment() {
     private fun renderCompleteState(state: AuthorizationUiState.Complete) {
         binding.progressBar.isVisible = false
         showSnackbar(state.message)
-        viewModel.login()
         findNavController().navigate(
-            AuthorizationFragmentDirections.actionAuthorizationFragmentToLoanHistoryFragment()
+            AuthorizationFragmentDirections.actionAuthorizationFragmentToLoginFragment()
         )
     }
 

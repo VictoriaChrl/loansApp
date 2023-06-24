@@ -48,8 +48,6 @@ class LoanCreationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(this, viewModelFactory)[LoanCreationViewModel::class.java]
-//
-//        viewModel.getLoanConditions()
 
         binding.apply {
             addButton.setOnClickListener {
@@ -141,9 +139,7 @@ class LoanCreationFragment : Fragment() {
     private fun renderCompleteLoanCreationState(state: LoanCreationUiState.CompleteLoanCreation) {
         binding.progressBar.isVisible = false
         showSnackbar(state.message)
-        findNavController().navigate(
-            LoanCreationFragmentDirections.actionLoanCreationFragmentToLoanHistoryFragment()
-        )
+        findNavController().navigateUp()
     }
 
     private fun renderErrorNoInternetState() {

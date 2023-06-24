@@ -8,7 +8,7 @@ interface LoanRepository {
 
     suspend fun getAllLoans(): List<Loan>
 
-    suspend fun getById(id: Long): Loan
+    suspend fun getLoanById(id: Long): Loan
 
     suspend fun createLoan(newLoan: NewLoan)
 

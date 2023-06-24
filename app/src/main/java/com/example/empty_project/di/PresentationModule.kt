@@ -2,9 +2,7 @@ package com.example.empty_project.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.empty_project.presentation.AuthorizationViewModel
-import com.example.empty_project.presentation.LoanCreationViewModel
-import com.example.empty_project.presentation.LoanHistoryViewModel
+import com.example.empty_project.presentation.*
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -29,4 +27,13 @@ interface PresentationModule {
     @ViewModelKey(LoanCreationViewModel::class)
     fun bindLoanCreationViewModel(viewModel: LoanCreationViewModel): ViewModel
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(LoginViewModel::class)
+    fun bindLoginViewModel(viewModel:LoginViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(LoanDetailsViewModel::class)
+    fun bindLoanDetailsViewModel(viewModel: LoanDetailsViewModel): ViewModel
 }

@@ -10,8 +10,8 @@
         android:name="com.example.empty_project.ui.AuthorizationFragment"
         android:label="AuthorizationFragment">
         <action
-            android:id="@+id/action_authorizationFragment_to_loanHistoryFragment"
-            app:destination="@id/loanHistoryFragment" />
+            android:id="@+id/action_authorizationFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/loanCreationFragment"
@@ -24,7 +24,11 @@
     <fragment
         android:id="@+id/loanDetailsFragment"
         android:name="com.example.empty_project.ui.LoanDetailsFragment"
-        android:label="LoanDetailsFragment" />
+        android:label="LoanDetailsFragment" >
+        <argument
+            android:name="id"
+            app:argType="long" />
+    </fragment>
     <fragment
         android:id="@+id/loanHistoryFragment"
         android:name="com.example.empty_project.ui.LoanHistoryFragment"
@@ -35,5 +39,13 @@
         <action
             android:id="@+id/action_loanHistoryFragment_to_loanCreationFragment"
             app:destination="@id/loanCreationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.empty_project.ui.LoginFragment"
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_loanHistoryFragment"
+            app:destination="@id/loanHistoryFragment" />
     </fragment>
 </navigation>

@@ -33,4 +33,9 @@ class DomainModule {
     fun provideGetAllLoansUseCase(repository: LoanRepository): GetAllLoansUseCase {
         return GetAllLoansUseCase(repository)
     }
+
+    @Provides
+    fun provideGetLoanByIdUseCase(repository: LoanRepository): GetLoanByIdUseCase {
+        return GetLoanByIdUseCase(repository)
+    }
 }

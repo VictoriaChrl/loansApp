@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import com.example.empty_project.databinding.ItemLoanBinding
 import com.example.empty_project.domain.entity.Loan
 
-class LoanHistoryAdapter(private val onItemClicked: (id: Loan) -> Unit) :
+class LoanHistoryAdapter(private val onItemClicked: (id: Long) -> Unit) :
     ListAdapter<Loan, LoanHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LoanHolder {

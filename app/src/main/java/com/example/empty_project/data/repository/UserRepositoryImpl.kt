@@ -14,21 +14,17 @@ class UserRepositoryImpl
 
     override suspend fun registerUser(name: String, password: String) {
         loansApi.registerUser(AuthModel(name, password))
-
-        sharPrefManager.apply {
-            saveName(name)
-            savePassword(password)
-        }
     }
 
-    override suspend fun loginUser() {
-        val name = sharPrefManager.getName()
-        val password = sharPrefManager.getPassword()
-
+    override suspend fun loginUser(name: String, password: String) {
         val response = loansApi.loginUser(AuthModel(name, password))
 
         val token = response.string()
 
-        sharPrefManager.saveToken(token)
+        sharPrefManager.apply {
+            saveName(name)
+            savePassword(password)
+            saveToken(token)
+        }
     }
 }
