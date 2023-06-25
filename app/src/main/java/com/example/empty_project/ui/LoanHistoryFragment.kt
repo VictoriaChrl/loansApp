@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.addCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -30,6 +32,14 @@ class LoanHistoryFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
+        val callback: OnBackPressedCallback = object :
+            OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                this.remove()
+                activity?.finishAffinity()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
         super.onAttach(context)
     }
 
