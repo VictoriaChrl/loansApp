@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
 
             mainGraph.setStartDestination(
                 when (token) {
-                    null -> R.id.authorizationFragment
+                    null -> R.id.registrationFragment
                     else -> R.id.loanHistoryFragment
                 }
             )

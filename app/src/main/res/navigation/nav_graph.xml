@@ -2,24 +2,21 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/authorizationFragment">
+    app:startDestination="@id/registrationFragment">
 
 
     <fragment
-        android:id="@+id/authorizationFragment"
-        android:name="com.example.empty_project.ui.AuthorizationFragment"
-        android:label="AuthorizationFragment">
+        android:id="@+id/registrationFragment"
+        android:name="com.example.empty_project.ui.RegistrationFragment"
+        android:label="RegistrationFragment">
         <action
-            android:id="@+id/action_authorizationFragment_to_loginFragment"
+            android:id="@+id/action_registrationFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/loanCreationFragment"
         android:name="com.example.empty_project.ui.LoanCreationFragment"
         android:label="LoanCreationFragment" >
-        <action
-            android:id="@+id/action_loanCreationFragment_to_loanHistoryFragment"
-            app:destination="@id/loanHistoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/loanDetailsFragment"
@@ -39,6 +36,9 @@
         <action
             android:id="@+id/action_loanHistoryFragment_to_loanCreationFragment"
             app:destination="@id/loanCreationFragment" />
+        <action
+            android:id="@+id/action_loanHistoryFragment_to_instructionContainerFragment"
+            app:destination="@id/instructionContainerFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -48,4 +48,8 @@
             android:id="@+id/action_loginFragment_to_loanHistoryFragment"
             app:destination="@id/loanHistoryFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/instructionContainerFragment"
+        android:name="com.example.empty_project.ui.util.InstructionContainerFragment"
+        android:label="InstructionContainerFragment" />
 </navigation>

@@ -11,8 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.empty_project.R
 import com.example.empty_project.databinding.FragmentUserLoginBinding
-import com.example.empty_project.presentation.LoginUiState
-import com.example.empty_project.presentation.LoginViewModel
+import com.example.empty_project.presentation.states.LoginUiState
+import com.example.empty_project.presentation.viewmodels.LoginViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject

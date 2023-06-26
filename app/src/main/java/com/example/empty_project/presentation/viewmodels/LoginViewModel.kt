@@ -1,11 +1,11 @@
-package com.example.empty_project.presentation
+package com.example.empty_project.presentation.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.empty_project.domain.usecase.LoginUseCase
-import com.example.empty_project.domain.usecase.RegistrationUseCase
+import com.example.empty_project.presentation.states.LoginUiState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.net.ConnectException

@@ -1,17 +1,18 @@
-package com.example.empty_project.presentation
+package com.example.empty_project.presentation.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.empty_project.domain.usecase.GetAllLoansUseCase
 import com.example.empty_project.domain.usecase.GetLoanByIdUseCase
+import com.example.empty_project.presentation.states.LoanDetailsUiState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.net.ConnectException
 import java.net.NoRouteToHostException
 import java.net.UnknownHostException
 import javax.inject.Inject
+import javax.net.ssl.SSLHandshakeException
 
 class LoanDetailsViewModel  @Inject constructor(
     private val getLoanByIdUseCase: GetLoanByIdUseCase
@@ -34,6 +35,7 @@ class LoanDetailsViewModel  @Inject constructor(
 
     private fun handleException(exception: Exception){
         when (exception) {
+            is SSLHandshakeException,
             is ConnectException,
             is UnknownHostException,
             is NoRouteToHostException -> _state.postValue(LoanDetailsUiState.Error.NoInternet)

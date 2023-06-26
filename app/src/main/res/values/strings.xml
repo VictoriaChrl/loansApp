@@ -36,11 +36,40 @@
     <string name="edit_text_empty">Заполните данные</string>
     <string name="edit_text_amount_incorrect">Укажите сумму займа в соответствии с условиями</string>
     <string name="try_again">Поробуйте еще раз</string>
-
+    <string name="registration_success">Регистрация прошла успешно</string>
+    <!-- loan conditions -->
+    <string name="loan_max_amount_condition">%1$s РУБ</string>
+    <string name="loan_percent_condition">%1$s %%</string>
     <!-- fragment loan details -->
     <string name="loan_percent">%1$s %%</string>
     <string name="loan_period_day">%1$s день</string>
     <string name="loan_period_days">%1$s дней</string>
     <string name="loan_period_of_day">%1$s дня</string>
     <string name="loan_title">Заявка на займ от %1$s</string>
+    <string name="text_update_button">Обновить</string>
+    <string name="text_amount">Сумма займа</string>
+    <string name="text_period">Длительность</string>
+    <string name="text_date">Дата заявки</string>
+    <string name="text_percent">Ставка</string>
+    <string name="text_status">Статус</string>
+    <string name="text_data">Личные данные получателя</string>
+    <string name="text_name">Имя</string>
+    <string name="text_surname">Фамилия</string>
+    <string name="text_phone">Телефон</string>
+
+    <!-- instructions -->
+    <string name="instruction_bank">\nМожно ли получить займ в банке?\nУточните адрес банка и возможность получить займ по телефону: +7(495)234-28-34
+    </string>
+    <string name="instruction_card">\nКак получить займ на карту?\nНачиная с первого микрозайма компания ООО МКК «Страна Экспресс» предоставляет
+        возможность взять займ до зарплаты с онлайн-зачислением на карту МИР,
+        VISA или Mastercard (в т.ч. Maestro) любого российского банка.
+        После одобрения займа с вами свяжутся сотрудники банка для получения займа на карту.
+    </string>
+
+    <!-- instruction create loan -->
+    <string name="instruction_add_loan">\nКак получить займ?\nСоздайте заявку на займ
+    </string>
+    <string name="instruction_fill_gaps">\nКак получить займ?\nОзнакомтесь с условиями и заполните необходимы данные
+    </string>
+
 </resources>

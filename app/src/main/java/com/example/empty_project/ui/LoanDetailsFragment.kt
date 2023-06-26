@@ -8,15 +8,13 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.empty_project.R
 import com.example.empty_project.databinding.FragmentLoanDetailsBinding
-import com.example.empty_project.domain.entity.Loan
-import com.example.empty_project.domain.entity.formatLoanStatus
-import com.example.empty_project.presentation.LoanDetailsUiState
-import com.example.empty_project.presentation.LoanDetailsViewModel
-import com.example.empty_project.ui.adapter.LoanHistoryAdapter
+import com.example.empty_project.domain.entity.util.formatLoanStatus
+import com.example.empty_project.presentation.states.LoanDetailsUiState
+import com.example.empty_project.presentation.viewmodels.LoanDetailsViewModel
+import com.example.empty_project.ui.util.formatLoanPeriod
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 

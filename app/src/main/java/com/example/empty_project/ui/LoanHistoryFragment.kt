@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.addCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -14,13 +13,13 @@ import androidx.navigation.fragment.findNavController
 import com.example.empty_project.R
 import com.example.empty_project.databinding.FragmentLoanHistoryBinding
 import com.example.empty_project.domain.entity.Loan
-import com.example.empty_project.presentation.LoanHistoryUiState
-import com.example.empty_project.presentation.LoanHistoryViewModel
+import com.example.empty_project.presentation.states.LoanHistoryUiState
+import com.example.empty_project.presentation.viewmodels.LoanHistoryViewModel
 import com.example.empty_project.ui.adapter.LoanHistoryAdapter
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-class LoanHistoryFragment : Fragment() {
+class LoanHistoryFragment : Fragment(){
 
     private var _binding: FragmentLoanHistoryBinding? = null
     private val binding get() = _binding!!
@@ -55,6 +54,10 @@ class LoanHistoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.swipeRefreshLayout.setOnRefreshListener{
+            viewModel.getLoans()
+            binding.swipeRefreshLayout.isRefreshing = false
+        }
 
         viewModel = ViewModelProvider(this, viewModelFactory)[LoanHistoryViewModel::class.java]
 
@@ -66,6 +69,10 @@ class LoanHistoryFragment : Fragment() {
             }
             buttonUpdate.setOnClickListener {
                 viewModel.getLoans()
+            }
+            toolbar.menu.findItem(R.id.action_add).setOnMenuItemClickListener {
+                findNavController().navigate(LoanHistoryFragmentDirections.actionLoanHistoryFragmentToInstructionContainerFragment())
+                true
             }
         }
 
@@ -135,4 +142,5 @@ class LoanHistoryFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 }

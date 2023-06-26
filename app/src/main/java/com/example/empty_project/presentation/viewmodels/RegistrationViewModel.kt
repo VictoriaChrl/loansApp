@@ -1,53 +1,51 @@
-package com.example.empty_project.presentation
+package com.example.empty_project.presentation.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.empty_project.domain.usecase.LoginUseCase
 import com.example.empty_project.domain.usecase.RegistrationUseCase
-import kotlinx.coroutines.CoroutineExceptionHandler
+import com.example.empty_project.presentation.states.RegistrationUiState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.net.ConnectException
 import java.net.NoRouteToHostException
 import java.net.UnknownHostException
 import javax.inject.Inject
+import javax.net.ssl.SSLHandshakeException
 
-class AuthorizationViewModel @Inject constructor(
+class RegistrationViewModel @Inject constructor(
     private val registrationUseCase: RegistrationUseCase
 ) : ViewModel() {
 
-    private val _state: MutableLiveData<AuthorizationUiState> =
-        MutableLiveData(AuthorizationUiState.Initial)
-    val state: LiveData<AuthorizationUiState> = _state
+    private val _state: MutableLiveData<RegistrationUiState> =
+        MutableLiveData(RegistrationUiState.Initial)
+    val state: LiveData<RegistrationUiState> = _state
 
     fun registerUser(name: String, password: String) {
-        _state.value = AuthorizationUiState.Loading
+        _state.value = RegistrationUiState.Loading
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 registrationUseCase(
                     name = name,
                     password = password
                 )
-                onComplete()
+                _state.postValue(RegistrationUiState.Complete)
+                _state.postValue(RegistrationUiState.End)
             } catch (exception: Exception) {
                 handleException(exception)
             }
         }
     }
 
-    private fun onComplete() {
-        _state.postValue(AuthorizationUiState.Complete("Регистрация прошла успешно!"))
-    }
-
     private fun handleException(exception: Exception){
         when (exception) {
+            is SSLHandshakeException,
             is ConnectException,
             is UnknownHostException,
-            is NoRouteToHostException -> _state.postValue(AuthorizationUiState.Error.NoInternet)
+            is NoRouteToHostException -> _state.postValue(RegistrationUiState.Error.NoInternet)
 
-            else -> _state.postValue(AuthorizationUiState.Error.AlreadyExist)
+            else -> _state.postValue(RegistrationUiState.Error.AlreadyExist)
         }
     }
 }

@@ -14,8 +14,10 @@ import androidx.navigation.fragment.findNavController
 import com.example.empty_project.R
 import com.example.empty_project.databinding.FragmentLoanCreationBinding
 import com.example.empty_project.domain.entity.NewLoan
-import com.example.empty_project.presentation.LoanCreationUiState
-import com.example.empty_project.presentation.LoanCreationViewModel
+import com.example.empty_project.domain.entity.util.formatLoanStatus
+import com.example.empty_project.presentation.states.LoanCreationUiState
+import com.example.empty_project.presentation.viewmodels.LoanCreationViewModel
+import com.example.empty_project.ui.util.formatLoanPeriod
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
@@ -91,9 +93,9 @@ class LoanCreationFragment : Fragment() {
             is LoanCreationUiState.CompleteLoadingConditions -> renderCompleteLoadingConditionsState(
                 state
             )
-            is LoanCreationUiState.CompleteLoanCreation -> renderCompleteLoanCreationState(state)
+            is LoanCreationUiState.CompleteLoanCreation -> renderCompleteLoanCreationState()
             is LoanCreationUiState.Error.NoInternet -> renderErrorNoInternetState()
-            is LoanCreationUiState.Error.Unknown -> renderErrorUnknownState(state)
+            is LoanCreationUiState.Error.Unknown -> renderErrorUnknownState()
         }
     }
 
@@ -130,15 +132,15 @@ class LoanCreationFragment : Fragment() {
                 isVisible = false
             }
 
-            maxAmount.text = state.loanConditions.maxAmount.toString()
-            period.text = state.loanConditions.period.toString()
-            percent.text = state.loanConditions.percent.toString()
+            maxAmount.text = getString(R.string.loan_max_amount_condition,state.loanConditions.maxAmount.toString())
+            period.text = formatLoanPeriod(requireContext(),state.loanConditions.period)
+            percent.text = getString(R.string.loan_percent_condition,state.loanConditions.percent.toString())
         }
     }
 
-    private fun renderCompleteLoanCreationState(state: LoanCreationUiState.CompleteLoanCreation) {
+    private fun renderCompleteLoanCreationState() {
         binding.progressBar.isVisible = false
-        showSnackbar(state.message)
+            //уведомление что все ок
         findNavController().navigateUp()
     }
 
@@ -154,7 +156,7 @@ class LoanCreationFragment : Fragment() {
         }
     }
 
-    private fun renderErrorUnknownState(state: LoanCreationUiState.Error.Unknown) {
+    private fun renderErrorUnknownState() {
         binding.apply {
             shimmerAmount.animation = null
             shimmerPeriod.animation = null
@@ -165,7 +167,7 @@ class LoanCreationFragment : Fragment() {
             editTextLastName.isEnabled = true
             editTextAmount.isEnabled = true
             editTextPhoneNumber.isEnabled = true
-            showSnackbar(state.message)
+            showSnackbar(getString(R.string.unknown_error))
         }
     }
 

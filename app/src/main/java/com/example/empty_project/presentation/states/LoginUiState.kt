@@ -1,4 +1,4 @@
-package com.example.empty_project.presentation
+package com.example.empty_project.presentation.states
 
 sealed interface LoginUiState{
 

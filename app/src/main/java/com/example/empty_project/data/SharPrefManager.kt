@@ -31,7 +31,6 @@ class SharPrefManagerImpl @Inject constructor(
         private const val PASSWORD = "Password"
     }
 
-    //    private val sharedPreferences = context.getSharedPreferences(AUTH_FILE, Context.MODE_PRIVATE)
     private val masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
 
     private val sharedPreferences = EncryptedSharedPreferences.create(
@@ -65,30 +64,5 @@ class SharPrefManagerImpl @Inject constructor(
     override fun getToken(): String? {
         return sharedPreferences.getString(TOKEN, null)
     }
-
-//    private fun encrypt(value: String?): String? {
-//        value ?: return null
-//        val cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING")
-//        cipher.init(
-//            Cipher.ENCRYPT_MODE,
-//            SecretKeySpec(SECRET_KEY.toByteArray(), "AES"),
-//            IvParameterSpec(INIT_VECTOR.toByteArray())
-//        )
-//        val encryptedValue = cipher.doFinal(value.toByteArray())
-//        return Base64.encodeToString(encryptedValue, Base64.DEFAULT)
-//    }
-//
-//    private fun decrypt(value: String?): String? {
-//        value ?: return null
-//        val cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING")
-//        cipher.init(
-//            Cipher.DECRYPT_MODE,
-//            SecretKeySpec(SECRET_KEY.toByteArray(), "AES"),
-//            IvParameterSpec(INIT_VECTOR.toByteArray())
-//        )
-//        val decodedValue = Base64.decode(value, Base64.DEFAULT)
-//        val decryptedValue = cipher.doFinal(decodedValue)
-//        return String(decryptedValue)
-//    }
 
 }

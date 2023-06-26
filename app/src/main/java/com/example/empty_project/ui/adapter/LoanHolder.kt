@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.empty_project.R
 import com.example.empty_project.databinding.ItemLoanBinding
 import com.example.empty_project.domain.entity.Loan
-import com.example.empty_project.domain.entity.formatLoanStatus
+import com.example.empty_project.domain.entity.util.formatLoanStatus
 
 class LoanHolder(
     private val binding: ItemLoanBinding,

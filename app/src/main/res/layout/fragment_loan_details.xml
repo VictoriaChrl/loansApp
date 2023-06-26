@@ -11,6 +11,26 @@
         android:layout_height="match_parent"
         android:padding="@dimen/padding_24">
 
+        <TextView
+            android:id="@+id/instruction_text_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/instruction_card"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/instruction_text_bank" />
+
+        <ImageView
+            android:id="@+id/dividerBottom"
+            android:layout_marginTop="@dimen/padding_16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_divider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textPhoneNumber" />
+
         <androidx.core.widget.ContentLoadingProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyle"
@@ -37,7 +57,7 @@
             android:id="@+id/buttonUpdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Обновить"
+            android:text="@string/text_update_button"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -120,7 +140,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/padding_16"
-            android:text="Сумма займа"
+            android:text="@string/text_amount"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/loanName" />
 
@@ -129,7 +149,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/padding_16"
-            android:text="Длительность"
+            android:text="@string/text_period"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textAmount" />
 
@@ -138,7 +158,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/padding_16"
-            android:text="Дата заявки"
+            android:text="@string/text_date"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textPeriod" />
 
@@ -147,7 +167,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/padding_16"
-            android:text="Ставка"
+            android:text="@string/text_percent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textDate" />
 
@@ -156,7 +176,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/padding_16"
-            android:text="Статус"
+            android:text="@string/text_status"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textPercent" />
 
@@ -166,7 +186,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/padding_16"
-            android:text="Личные данные получателя:"
+            android:text="@string/text_data"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider" />
 
@@ -175,7 +195,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/padding_16"
-            android:text="Имя"
+            android:text="@string/text_name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textData" />
 
@@ -184,7 +204,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/padding_16"
-            android:text="Фамилия"
+            android:text="@string/text_surname"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textName" />
 
@@ -193,8 +213,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/padding_16"
-            android:text="Телефон"
-
+            android:text="@string/text_phone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textSurname" />
 
@@ -224,7 +243,7 @@
             android:id="@+id/group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:constraint_referenced_ids="userName,textAmount,loanPercent,textStatus,loanStatus,divider,loanDate,textSurname,textName,textPercent,loanName,textData,textPeriod,loanPeriod,loanAmount,userSurname,userPhoneNumber,textPhoneNumber,textDate" />
+            app:constraint_referenced_ids="userName,textAmount,loanPercent,textStatus,loanStatus,divider,loanDate,textSurname,textName,textPercent,loanName,textData,textPeriod,loanPeriod,loanAmount,userSurname,userPhoneNumber,textPhoneNumber,textDate,instruction_text_bank,instruction_text_card" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
@@ -232,6 +251,17 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_begin="136dp" />
+
+        <TextView
+            android:id="@+id/instruction_text_bank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_16"
+            android:autoLink="phone"
+            android:linksClickable="true"
+            android:text="@string/instruction_bank"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dividerBottom" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

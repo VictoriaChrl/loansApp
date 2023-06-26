@@ -1,4 +1,4 @@
-package com.example.empty_project.presentation
+package com.example.empty_project.presentation.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,12 +7,14 @@ import androidx.lifecycle.viewModelScope
 import com.example.empty_project.domain.entity.NewLoan
 import com.example.empty_project.domain.usecase.CreateLoanUseCase
 import com.example.empty_project.domain.usecase.GetLoanConditionsUseCase
+import com.example.empty_project.presentation.states.LoanCreationUiState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.net.ConnectException
 import java.net.NoRouteToHostException
 import java.net.UnknownHostException
 import javax.inject.Inject
+import javax.net.ssl.SSLHandshakeException
 
 class LoanCreationViewModel @Inject constructor(
     private val createLoanUseCase: CreateLoanUseCase,
@@ -47,16 +49,17 @@ class LoanCreationViewModel @Inject constructor(
     }
 
     private fun onCompleteLoanCreation() {
-        _state.postValue(LoanCreationUiState.CompleteLoanCreation("Займ создан!"))
+        _state.postValue(LoanCreationUiState.CompleteLoanCreation)
     }
 
     private fun handleException(exception: Exception) {
         when (exception) {
+            is SSLHandshakeException,
             is ConnectException,
             is UnknownHostException,
             is NoRouteToHostException -> _state.postValue(LoanCreationUiState.Error.NoInternet)
 
-            else -> _state.postValue(LoanCreationUiState.Error.Unknown(exception.message.toString()))
+            else -> _state.postValue(LoanCreationUiState.Error.Unknown)
         }
     }
 }

@@ -10,21 +10,21 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.empty_project.R
-import com.example.empty_project.databinding.FragmentAuthorizationBinding
-import com.example.empty_project.presentation.AuthorizationUiState
-import com.example.empty_project.presentation.AuthorizationViewModel
+import com.example.empty_project.databinding.FragmentRegistrationBinding
+import com.example.empty_project.presentation.states.RegistrationUiState
+import com.example.empty_project.presentation.viewmodels.RegistrationViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-class AuthorizationFragment : Fragment() {
+class RegistrationFragment : Fragment() {
 
-    private var _binding: FragmentAuthorizationBinding? = null
+    private var _binding: FragmentRegistrationBinding? = null
     private val binding get() = _binding!!
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    lateinit var viewModel: AuthorizationViewModel
+    lateinit var viewModel: RegistrationViewModel
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
@@ -37,19 +37,19 @@ class AuthorizationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
-        _binding = FragmentAuthorizationBinding.inflate(inflater, container, false)
+        _binding = FragmentRegistrationBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this, viewModelFactory)[AuthorizationViewModel::class.java]
+        viewModel = ViewModelProvider(this, viewModelFactory)[RegistrationViewModel::class.java]
 
         binding.apply {
             clickableTextAlreadyHaveAccount.setOnClickListener {
                 findNavController().navigate(
-                    AuthorizationFragmentDirections.actionAuthorizationFragmentToLoginFragment()
+                    RegistrationFragmentDirections.actionRegistrationFragmentToLoginFragment()
                 )
             }
             button.setOnClickListener {
@@ -66,13 +66,14 @@ class AuthorizationFragment : Fragment() {
         viewModel.state.observe(viewLifecycleOwner, ::processState)
     }
 
-    private fun processState(state: AuthorizationUiState) {
+    private fun processState(state: RegistrationUiState) {
         when (state) {
-            is AuthorizationUiState.Initial -> Unit
-            is AuthorizationUiState.Loading -> renderLoadingState()
-            is AuthorizationUiState.Complete -> renderCompleteState(state)
-            is AuthorizationUiState.Error.NoInternet -> renderNoInternetState()
-            is AuthorizationUiState.Error.AlreadyExist -> renderAlreadyExistState()
+            is RegistrationUiState.Initial -> Unit
+            is RegistrationUiState.Loading -> renderLoadingState()
+            is RegistrationUiState.Complete -> renderCompleteState()
+            is RegistrationUiState.Error.NoInternet -> renderNoInternetState()
+            is RegistrationUiState.Error.AlreadyExist -> renderAlreadyExistState()
+            RegistrationUiState.End -> Unit
         }
     }
 
@@ -83,11 +84,11 @@ class AuthorizationFragment : Fragment() {
         binding.editTextPassword.isEnabled = false
     }
 
-    private fun renderCompleteState(state: AuthorizationUiState.Complete) {
+    private fun renderCompleteState() {
         binding.progressBar.isVisible = false
-        showSnackbar(state.message)
+        showSnackbar(getString(R.string.unknown_error))
         findNavController().navigate(
-            AuthorizationFragmentDirections.actionAuthorizationFragmentToLoginFragment()
+            RegistrationFragmentDirections.actionRegistrationFragmentToLoginFragment()
         )
     }
 

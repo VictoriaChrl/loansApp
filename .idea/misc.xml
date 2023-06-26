@@ -9,11 +9,13 @@
         <entry key="..\:/Users/user/Desktop/project/2023_q2_churilova/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1955" />
         <entry key="..\:/Users/user/Desktop/project/2023_q2_churilova/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/user/Desktop/project/2023_q2_churilova/app/src/main/res/layout/fragment_authorization.xml" value="0.25" />
+        <entry key="..\:/Users/user/Desktop/project/2023_q2_churilova/app/src/main/res/layout/fragment_create_loan_instruction.xml" value="0.1" />
         <entry key="..\:/Users/user/Desktop/project/2023_q2_churilova/app/src/main/res/layout/fragment_loan_creation.xml" value="0.25" />
-        <entry key="..\:/Users/user/Desktop/project/2023_q2_churilova/app/src/main/res/layout/fragment_loan_details.xml" value="0.25" />
+        <entry key="..\:/Users/user/Desktop/project/2023_q2_churilova/app/src/main/res/layout/fragment_loan_details.xml" value="0.12815533980582525" />
         <entry key="..\:/Users/user/Desktop/project/2023_q2_churilova/app/src/main/res/layout/fragment_loan_history.xml" value="0.22" />
         <entry key="..\:/Users/user/Desktop/project/2023_q2_churilova/app/src/main/res/layout/fragment_user_login.xml" value="0.1" />
         <entry key="..\:/Users/user/Desktop/project/2023_q2_churilova/app/src/main/res/layout/item_loan.xml" value="0.33" />
+        <entry key="..\:/Users/user/Desktop/project/2023_q2_churilova/app/src/main/res/layout/item_loan_creation_instruction.xml" value="0.1" />
         <entry key="..\:/Users/user/Desktop/project/2023_q2_churilova/app/src/main/res/menu/menu_info.xml" value="0.209009009009009" />
         <entry key="..\:/Users/user/Desktop/project/2023_q2_churilova/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="..\:/Users/user/Desktop/project/2023_q2_churilova/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />

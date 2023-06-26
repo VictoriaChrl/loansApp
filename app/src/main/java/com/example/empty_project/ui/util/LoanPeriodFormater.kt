@@ -1,4 +1,4 @@
-package com.example.empty_project.ui
+package com.example.empty_project.ui.util
 
 import android.content.Context
 import com.example.empty_project.R

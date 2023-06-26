@@ -1,4 +1,4 @@
-package com.example.empty_project.presentation
+package com.example.empty_project.presentation.states
 
 import com.example.empty_project.domain.entity.LoanConditions
 
@@ -12,13 +12,13 @@ sealed interface LoanCreationUiState {
 
     object LoadingLoanCreation : LoanCreationUiState
 
-    data class CompleteLoanCreation(val message: String) : LoanCreationUiState
+    object CompleteLoanCreation: LoanCreationUiState
 
     sealed interface Error : LoanCreationUiState {
 
         object NoInternet : Error
 
-        data class Unknown(val message: String) : Error
+        object Unknown : Error
     }
 
 }
