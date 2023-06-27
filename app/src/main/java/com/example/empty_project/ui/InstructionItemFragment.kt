@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
-import com.example.empty_project.databinding.ItemLoanCreationInstructionBinding
+import com.example.empty_project.databinding.ItemInstructionBinding
 
-class LoanCreationInstructionFragment : Fragment() {
+class InstructionItemFragment : Fragment() {
 
-    private var _binding: ItemLoanCreationInstructionBinding? = null
+    private var _binding: ItemInstructionBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -19,7 +19,7 @@ class LoanCreationInstructionFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        _binding = ItemLoanCreationInstructionBinding.inflate(inflater, container, false)
+        _binding = ItemInstructionBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -30,11 +30,11 @@ class LoanCreationInstructionFragment : Fragment() {
         fun newInstance(
             @StringRes textRes: Int,
             @DrawableRes drawableRes: Int
-        ): LoanCreationInstructionFragment {
+        ): InstructionItemFragment {
             val args = Bundle()
             args.putInt(KEY_TEXT, textRes)
             args.putInt(KEY_IMAGE, drawableRes)
-            return LoanCreationInstructionFragment().apply { arguments = args }
+            return InstructionItemFragment().apply { arguments = args }
         }
     }
 

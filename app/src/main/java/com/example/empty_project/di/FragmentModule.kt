@@ -1,7 +1,7 @@
 package com.example.empty_project.di
 
 import com.example.empty_project.ui.*
-import com.example.empty_project.ui.util.InstructionContainerFragment
+import com.example.empty_project.ui.InstructionFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -25,8 +25,8 @@ abstract class FragmentModule {
     abstract fun contributeLoanDetailsFragment(): LoanDetailsFragment
 
     @ContributesAndroidInjector
-    abstract fun contributeLoanCreationInstructionFragment(): LoanCreationInstructionFragment
+    abstract fun contributeInstructionItemFragment(): InstructionItemFragment
 
     @ContributesAndroidInjector
-    abstract fun contributeInstructionContainerFragment(): InstructionContainerFragment
+    abstract fun contributeInstructionFragment(): InstructionFragment
 }

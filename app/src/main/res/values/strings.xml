@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Final project</string>
+    <string name="app_name">Займы</string>
     <!-- fragment register -->
     <string name="register_title">Регистрация</string>
     <string name="edit_login">Логин</string>
@@ -11,7 +11,6 @@
     <string name="login_button">Войти</string>
     <!-- fragment loan history -->
     <string name="history_title">Мои займы</string>
-    <string name="error_internet">Проверьте подключение к интернету</string>
     <string name="loan_amount_holder">%1$s РУБ</string>
     <!-- loan -->
     <string name="loan_status_approved">ОДОБРЕН</string>
@@ -20,7 +19,7 @@
     <!-- menu info -->
     <string name="watch_info">Посмотреть инструкцию</string>
     <!-- fragment loan creation -->
-    <string name="add_button_text">Получить займ</string>
+    <string name="add_button_text">Оформить займ</string>
     <string name="text_conditions_title">Условия взятия займа</string>
     <string name="text_conditions_maxAmount">Вы можете взять не выходя из дома</string>
     <string name="text_conditions_period">Сроком на</string>
@@ -30,13 +29,16 @@
     <string name="edit_hint_amount">Сумма займа</string>
     <string name="edit_hint_phone_number">Номер телефона</string>
     <string name="loans_empty">У вас пока нет займов</string>
+
+    <!-- snackbar -->
+    <string name="error_internet">Проверьте подключение к интернету</string>
     <string name="unknown_error">Что-то пошло не так</string>
     <string name="login_unknown_error">Что-то пошло не так, проверьте заполненные данные</string>
     <string name="error_user_already_exists">Пользователь уже существует</string>
     <string name="edit_text_empty">Заполните данные</string>
     <string name="edit_text_amount_incorrect">Укажите сумму займа в соответствии с условиями</string>
-    <string name="try_again">Поробуйте еще раз</string>
     <string name="registration_success">Регистрация прошла успешно</string>
+    <string name="loan_creation_success">Заяка на займ создана!</string>
     <!-- loan conditions -->
     <string name="loan_max_amount_condition">%1$s РУБ</string>
     <string name="loan_percent_condition">%1$s %%</string>
@@ -67,9 +69,10 @@
     </string>
 
     <!-- instruction create loan -->
-    <string name="instruction_add_loan">\nКак получить займ?\nСоздайте заявку на займ
-    </string>
-    <string name="instruction_fill_gaps">\nКак получить займ?\nОзнакомтесь с условиями и заполните необходимы данные
-    </string>
+    <string name="button_ok">Понятно</string>
+    <string name="instruction_title">Как получить займ?</string>
+    <string name="instruction_add_loan">Создайте заявку на займ</string>
+    <string name="instruction_fill_gaps">Ознакомтесь с условиями и заполните необходимы данные</string>
+    <string name="instruction_approved">Дождитесь одобрения заявки, и с вами свяжутся сотрудники банка для дальнейших действий</string>
 
 </resources>

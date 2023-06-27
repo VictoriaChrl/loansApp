@@ -38,7 +38,7 @@
             app:destination="@id/loanCreationFragment" />
         <action
             android:id="@+id/action_loanHistoryFragment_to_instructionContainerFragment"
-            app:destination="@id/instructionContainerFragment" />
+            app:destination="@id/instructionFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -49,7 +49,7 @@
             app:destination="@id/loanHistoryFragment" />
     </fragment>
     <fragment
-        android:id="@+id/instructionContainerFragment"
-        android:name="com.example.empty_project.ui.util.InstructionContainerFragment"
-        android:label="InstructionContainerFragment" />
+        android:id="@+id/instructionFragment"
+        android:name="com.example.empty_project.ui.InstructionFragment"
+        android:label="InstructionFragment" />
 </navigation>

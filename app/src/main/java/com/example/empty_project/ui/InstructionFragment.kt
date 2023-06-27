@@ -1,18 +1,20 @@
-package com.example.empty_project.ui.util
+package com.example.empty_project.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.empty_project.R
-import com.example.empty_project.databinding.FragmentCreateLoanInstructionBinding
+import com.example.empty_project.databinding.FragmentInstructionBinding
 import com.example.empty_project.ui.adapter.InstructionItem
-import com.example.empty_project.ui.adapter.LoanCreationAdapter
+import com.example.empty_project.ui.adapter.InstructionAdapter
+import com.google.android.material.tabs.TabLayoutMediator
 
-class InstructionContainerFragment: Fragment() {
+class InstructionFragment : Fragment() {
 
-    private var _binding: FragmentCreateLoanInstructionBinding? = null
+    private var _binding: FragmentInstructionBinding? = null
     private val binding get() = _binding!!
 
     private val items: List<InstructionItem> = listOf(
@@ -22,10 +24,13 @@ class InstructionContainerFragment: Fragment() {
         ),
         InstructionItem(
             textRes = R.string.instruction_fill_gaps,
-            drawableRes = R.drawable.add_loan_instr
+            drawableRes = R.drawable.fill_gaps_instr
+        ),
+        InstructionItem(
+            textRes = R.string.instruction_approved,
+            drawableRes = R.drawable.approved_instr
         )
     )
-
 
 
     override fun onCreateView(
@@ -33,17 +38,20 @@ class InstructionContainerFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        _binding = FragmentCreateLoanInstructionBinding.inflate(inflater, container, false)
+        _binding = FragmentInstructionBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-           viewPager.adapter = LoanCreationAdapter(items, requireActivity())
+            viewPager.adapter = InstructionAdapter(items, requireActivity())
+            TabLayoutMediator(tabLayout,viewPager){_,_->}.attach()
+            buttonOk.setOnClickListener {
+                findNavController().navigateUp()
+            }
         }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

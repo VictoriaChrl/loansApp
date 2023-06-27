@@ -3,10 +3,10 @@ package com.example.empty_project.ui.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.empty_project.ui.LoanCreationInstructionFragment
+import com.example.empty_project.ui.InstructionItemFragment
 
 
-class LoanCreationAdapter(
+class InstructionAdapter(
     private val items: List<InstructionItem>,
     activity: FragmentActivity
 ) : FragmentStateAdapter(activity) {
@@ -17,7 +17,7 @@ class LoanCreationAdapter(
 
     override fun createFragment(position: Int): Fragment {
         val item: InstructionItem = items[position]
-        return LoanCreationInstructionFragment.newInstance(
+        return InstructionItemFragment.newInstance(
             textRes = item.textRes,
             drawableRes = item.drawableRes
         )

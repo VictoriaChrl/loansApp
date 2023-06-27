@@ -1,6 +1,5 @@
 package com.example.empty_project.data.repository
 
-import android.util.Log
 import com.example.empty_project.data.SharPrefManagerImpl
 import com.example.empty_project.data.api.LoansApi
 import com.example.empty_project.data.converter.LoanConverter
@@ -19,7 +18,7 @@ class LoanRepositoryImpl @Inject constructor(
     override suspend fun getAllLoans(): List<Loan> {
         val token = sharPrefManager.getToken()
         val loans = loansApi.getAllLoans(token)
-        Log.v("loansRepo", loans.toString())
+
         return loans
             .map { loan -> converterLoan.convertLoan(loan) }
     }
@@ -30,8 +29,7 @@ class LoanRepositoryImpl @Inject constructor(
     }
     override suspend fun createLoan(newLoan: NewLoan) {
         val token = sharPrefManager.getToken()
-        val response = loansApi.createLoan(converterLoan.convertNewLoan(newLoan), token)
-        Log.v("createLoan",response.string())
+        loansApi.createLoan(converterLoan.convertNewLoan(newLoan), token)
     }
 
     override suspend fun getLoanConditions(): LoanConditions {

@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.empty_project.R
 import com.example.empty_project.databinding.FragmentLoanCreationBinding
+import com.example.empty_project.domain.entity.LoanConditions
 import com.example.empty_project.domain.entity.NewLoan
 import com.example.empty_project.domain.entity.util.formatLoanStatus
 import com.example.empty_project.presentation.states.LoanCreationUiState
@@ -30,6 +31,8 @@ class LoanCreationFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     lateinit var viewModel: LoanCreationViewModel
+
+    private var loanCondition: LoanConditions? = null
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
@@ -53,8 +56,7 @@ class LoanCreationFragment : Fragment() {
 
         binding.apply {
             addButton.setOnClickListener {
-                if (maxAmount.text?.isBlank() == true || percent.text?.isBlank() == true || period.text?.isBlank() == true) {
-                    showSnackbar(getString(R.string.try_again))
+                if (loanCondition == null) {
                     viewModel.getLoanConditions()
                 } else if (editTextAmount.text?.isBlank() == true ||
                     editTextFirstName.text?.isBlank() == true ||
@@ -62,8 +64,8 @@ class LoanCreationFragment : Fragment() {
                     editTextPhoneNumber.text?.isBlank() == true
                 ) {
                     showSnackbar(getString(R.string.edit_text_empty))
-                } else if (editTextAmount.text.toString().toInt() > maxAmount.text.toString()
-                        .toInt() ||
+                } else if (editTextAmount.text.toString().toLong() > loanCondition?.maxAmount!!
+                    ||
                     editTextAmount.text.toString().toInt() < 0
                 ) {
                     showSnackbar(getString(R.string.edit_text_amount_incorrect))
@@ -72,11 +74,11 @@ class LoanCreationFragment : Fragment() {
                         amount = editTextAmount.text.toString().toLong(),
                         firstName = editTextFirstName.text.toString(),
                         lastName = editTextLastName.text.toString(),
-                        percent = percent.text.toString().toDouble(),
-                        period = period.text.toString().toInt(),
+                        percent = loanCondition!!.percent,
+                        period = loanCondition!!.period,
                         phoneNumber = editTextPhoneNumber.text.toString()
                     )
-                    Log.v("newLoan", newLoan.toString())
+
                     viewModel.createLoan(newLoan)
                 }
             }
@@ -132,15 +134,25 @@ class LoanCreationFragment : Fragment() {
                 isVisible = false
             }
 
-            maxAmount.text = getString(R.string.loan_max_amount_condition,state.loanConditions.maxAmount.toString())
-            period.text = formatLoanPeriod(requireContext(),state.loanConditions.period)
-            percent.text = getString(R.string.loan_percent_condition,state.loanConditions.percent.toString())
+            loanCondition = LoanConditions(
+                state.loanConditions.maxAmount,
+                state.loanConditions.percent,
+                state.loanConditions.period
+            )
+
+            maxAmount.text = getString(
+                R.string.loan_max_amount_condition,
+                state.loanConditions.maxAmount.toString()
+            )
+            period.text = formatLoanPeriod(requireContext(), state.loanConditions.period)
+            percent.text =
+                getString(R.string.loan_percent_condition, state.loanConditions.percent.toString())
         }
     }
 
     private fun renderCompleteLoanCreationState() {
         binding.progressBar.isVisible = false
-            //уведомление что все ок
+        showSnackbar(getString(R.string.loan_creation_success))
         findNavController().navigateUp()
     }
 

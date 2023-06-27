@@ -1,6 +1,5 @@
 package com.example.empty_project.data.repository
 
-import android.util.Log
 import com.example.empty_project.data.SharPrefManagerImpl
 import com.example.empty_project.data.api.LoansApi
 import com.example.empty_project.data.model.AuthModel
