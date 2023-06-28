@@ -24,6 +24,7 @@ class RegistrationViewModel @Inject constructor(
 
     fun registerUser(name: String, password: String) {
         _state.value = RegistrationUiState.Loading
+
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 registrationUseCase(
@@ -31,11 +32,12 @@ class RegistrationViewModel @Inject constructor(
                     password = password
                 )
                 _state.postValue(RegistrationUiState.Complete)
-                _state.postValue(RegistrationUiState.End)
             } catch (exception: Exception) {
                 handleException(exception)
             }
         }
+
+        _state.value = RegistrationUiState.End
     }
 
     private fun handleException(exception: Exception){
@@ -43,9 +45,12 @@ class RegistrationViewModel @Inject constructor(
             is SSLHandshakeException,
             is ConnectException,
             is UnknownHostException,
-            is NoRouteToHostException -> _state.postValue(RegistrationUiState.Error.NoInternet)
-
-            else -> _state.postValue(RegistrationUiState.Error.AlreadyExist)
+            is NoRouteToHostException -> {
+                _state.postValue(RegistrationUiState.Error.NoInternet)
+            }
+            else -> {
+                _state.postValue(RegistrationUiState.Error.AlreadyExist)
+            }
         }
     }
 }

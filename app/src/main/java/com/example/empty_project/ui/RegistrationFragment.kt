@@ -73,7 +73,7 @@ class RegistrationFragment : Fragment() {
             is RegistrationUiState.Complete -> renderCompleteState()
             is RegistrationUiState.Error.NoInternet -> renderNoInternetState()
             is RegistrationUiState.Error.AlreadyExist -> renderAlreadyExistState()
-            RegistrationUiState.End -> Unit
+            is RegistrationUiState.End -> Unit
         }
     }
 
@@ -86,7 +86,7 @@ class RegistrationFragment : Fragment() {
 
     private fun renderCompleteState() {
         binding.progressBar.isVisible = false
-        showSnackbar(getString(R.string.unknown_error))
+        showSnackbar(getString(R.string.registration_success))
         findNavController().navigate(
             RegistrationFragmentDirections.actionRegistrationFragmentToLoginFragment()
         )

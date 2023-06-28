@@ -16,5 +16,4 @@ sealed interface RegistrationUiState {
     }
 
     object End : RegistrationUiState
-
 }
