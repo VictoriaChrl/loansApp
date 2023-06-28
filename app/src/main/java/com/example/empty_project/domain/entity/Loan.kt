@@ -1,7 +1,5 @@
 package com.example.empty_project.domain.entity
 
-import java.time.LocalDateTime
-
 data class Loan(
 	val amount: Long,
 	val firstName: String,

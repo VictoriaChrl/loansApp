@@ -1,7 +1,6 @@
 package com.example.empty_project.presentation.viewmodels
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.empty_project.domain.usecase.RegistrationUseCase
@@ -18,12 +17,11 @@ class RegistrationViewModel @Inject constructor(
     private val registrationUseCase: RegistrationUseCase
 ) : ViewModel() {
 
-    private val _state: MutableLiveData<RegistrationUiState> =
-        MutableLiveData(RegistrationUiState.Initial)
-    val state: LiveData<RegistrationUiState> = _state
+    private val _event: SingleLiveEvent<RegistrationUiState> = SingleLiveEvent()
+    val event: LiveData<RegistrationUiState> = _event
 
     fun registerUser(name: String, password: String) {
-        _state.value = RegistrationUiState.Loading
+        _event.value = RegistrationUiState.Loading
 
         viewModelScope.launch(Dispatchers.IO) {
             try {
@@ -31,13 +29,12 @@ class RegistrationViewModel @Inject constructor(
                     name = name,
                     password = password
                 )
-                _state.postValue(RegistrationUiState.Complete)
+                _event.postValue(RegistrationUiState.Complete)
             } catch (exception: Exception) {
                 handleException(exception)
             }
         }
 
-        _state.value = RegistrationUiState.End
     }
 
     private fun handleException(exception: Exception){
@@ -46,11 +43,16 @@ class RegistrationViewModel @Inject constructor(
             is ConnectException,
             is UnknownHostException,
             is NoRouteToHostException -> {
-                _state.postValue(RegistrationUiState.Error.NoInternet)
+                _event.postValue(RegistrationUiState.Error.NoInternet)
             }
             else -> {
-                _state.postValue(RegistrationUiState.Error.AlreadyExist)
+                _event.postValue(RegistrationUiState.Error.AlreadyExist)
             }
         }
+    }
+
+    override fun onCleared() {
+        _event.call()
+        super.onCleared()
     }
 }

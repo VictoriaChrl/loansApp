@@ -22,11 +22,11 @@ class LoanHistoryViewModel @Inject constructor(
     fun getLoans() {
         _state.value = LoanHistoryUiState.Loading
         viewModelScope.launch(Dispatchers.IO) {
-           try{
-               _state.postValue(LoanHistoryUiState.Complete(getAllLoansUseCase()))
-           }catch (exception: Exception){
-               handleException(exception)
-           }
+            try{
+                _state.postValue(LoanHistoryUiState.Complete(getAllLoansUseCase()))
+            }catch (exception: Exception){
+                handleException(exception)
+            }
         }
     }
 

@@ -25,6 +25,7 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
         app:tabBackground="@drawable/tab_selector_instr"
+        android:background="@android:color/transparent"
         app:tabGravity="center"
         app:tabIndicatorHeight="0dp"
         android:layout_width="match_parent"

@@ -15,10 +15,11 @@ import com.example.empty_project.R
 import com.example.empty_project.databinding.FragmentLoanCreationBinding
 import com.example.empty_project.domain.entity.LoanConditions
 import com.example.empty_project.domain.entity.NewLoan
-import com.example.empty_project.domain.entity.util.formatLoanStatus
 import com.example.empty_project.presentation.states.LoanCreationUiState
 import com.example.empty_project.presentation.viewmodels.LoanCreationViewModel
+import com.example.empty_project.ui.util.areEditTextsBlank
 import com.example.empty_project.ui.util.formatLoanPeriod
+import com.example.empty_project.ui.util.isIncorrectAmount
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
@@ -54,37 +55,45 @@ class LoanCreationFragment : Fragment() {
 
         viewModel = ViewModelProvider(this, viewModelFactory)[LoanCreationViewModel::class.java]
 
+        binding.addButton.setOnClickListener {
+            createLoan()
+        }
+
+        viewModel.apply {
+            event.observe(viewLifecycleOwner, ::processState)
+            state.observe(viewLifecycleOwner, ::processState)
+        }
+    }
+
+
+    private fun createLoan() {
         binding.apply {
-            addButton.setOnClickListener {
-                if (loanCondition == null) {
-                    viewModel.getLoanConditions()
-                } else if (editTextAmount.text?.isBlank() == true ||
-                    editTextFirstName.text?.isBlank() == true ||
-                    editTextLastName.text?.isBlank() == true ||
-                    editTextPhoneNumber.text?.isBlank() == true
+            loanCondition?.let {
+                if (areEditTextsBlank(
+                        editTextAmount,
+                        editTextFirstName,
+                        editTextLastName,
+                        editTextPhoneNumber
+                    )
                 ) {
                     showSnackbar(getString(R.string.edit_text_empty))
-                } else if (editTextAmount.text.toString().toLong() > loanCondition?.maxAmount!!
-                    ||
-                    editTextAmount.text.toString().toInt() < 0
-                ) {
+                } else if (editTextAmount.isIncorrectAmount(0, it.maxAmount)) {
                     showSnackbar(getString(R.string.edit_text_amount_incorrect))
                 } else {
                     val newLoan = NewLoan(
                         amount = editTextAmount.text.toString().toLong(),
                         firstName = editTextFirstName.text.toString(),
                         lastName = editTextLastName.text.toString(),
-                        percent = loanCondition!!.percent,
-                        period = loanCondition!!.period,
+                        percent = it.percent,
+                        period = it.period,
                         phoneNumber = editTextPhoneNumber.text.toString()
                     )
 
                     viewModel.createLoan(newLoan)
                 }
-            }
+            } ?: viewModel.getLoanConditions()
         }
 
-        viewModel.state.observe(viewLifecycleOwner, ::processState)
     }
 
     private fun processState(state: LoanCreationUiState) {

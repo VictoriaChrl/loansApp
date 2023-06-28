@@ -4,6 +4,7 @@
     <string name="register_title">Регистрация</string>
     <string name="edit_login">Логин</string>
     <string name="edit_password">Пароль</string>
+    <string name="button_registration">Зарегистрироваться</string>
     <string name="text_view_already_have_account">Если у вас уже есть аккаунт, </string>
     <string name="clickable_text_already_have_account">войдите</string>
     <!-- fragment login -->
@@ -13,9 +14,9 @@
     <string name="history_title">Мои займы</string>
     <string name="loan_amount_holder">%1$s РУБ</string>
     <!-- loan -->
-    <string name="loan_status_approved">ОДОБРЕН</string>
-    <string name="loan_status_rejected">ОТКЛОНЁН</string>
-    <string name="loan_status_registered">ПРИНЯТ</string>
+    <string name="loan_status_approved">ОДОБРЕНА</string>
+    <string name="loan_status_rejected">ОТКЛОНЕНА</string>
+    <string name="loan_status_registered">ПРИНЯТА</string>
     <!-- menu info -->
     <string name="watch_info">Посмотреть инструкцию</string>
     <!-- fragment loan creation -->
@@ -40,6 +41,7 @@
     <string name="registration_success">Регистрация прошла успешно</string>
     <string name="loan_creation_success">Заяка на займ создана!</string>
     <!-- loan conditions -->
+    <string name="loading_conditions">...</string>
     <string name="loan_max_amount_condition">%1$s РУБ</string>
     <string name="loan_percent_condition">%1$s %%</string>
     <!-- fragment loan details -->

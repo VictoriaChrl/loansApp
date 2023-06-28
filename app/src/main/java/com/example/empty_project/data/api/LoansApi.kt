@@ -11,9 +11,6 @@ import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 
-private const val AUTH_TOKEN =
-    "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2aWN0b3JpYSIsImV4cCI6MTY4OTQwNjk4N30.ZnCGbfu50mddHi40jdlVlb8U1hHPQxbkuJtJ0AOChBmrZFSHRSU-rzfTM0oB3cxD7UW2553spbsJ0d2MWyEuRw"
-
 interface LoansApi {
 
     @Headers("Accept: */*", "Content-Type: application/json")

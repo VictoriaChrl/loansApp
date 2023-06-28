@@ -13,6 +13,7 @@ import com.example.empty_project.R
 import com.example.empty_project.databinding.FragmentRegistrationBinding
 import com.example.empty_project.presentation.states.RegistrationUiState
 import com.example.empty_project.presentation.viewmodels.RegistrationViewModel
+import com.example.empty_project.ui.util.areEditTextsBlank
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
@@ -46,24 +47,32 @@ class RegistrationFragment : Fragment() {
 
         viewModel = ViewModelProvider(this, viewModelFactory)[RegistrationViewModel::class.java]
 
+        binding.clickableTextAlreadyHaveAccount.setOnClickListener {
+            findNavController().navigate(
+                RegistrationFragmentDirections.actionRegistrationFragmentToLoginFragment()
+            )
+        }
+
+        binding.buttonRegistration.setOnClickListener {
+            registerUser()
+        }
+
+
+        viewModel.event.observe(viewLifecycleOwner, ::processState)
+
+    }
+
+    private fun registerUser() {
         binding.apply {
-            clickableTextAlreadyHaveAccount.setOnClickListener {
-                findNavController().navigate(
-                    RegistrationFragmentDirections.actionRegistrationFragmentToLoginFragment()
+            if (areEditTextsBlank(editTextName, editTextPassword)) {
+                showSnackbar(getString(R.string.edit_text_empty))
+            } else {
+                viewModel.registerUser(
+                    editTextName.text.toString(),
+                    editTextPassword.text.toString()
                 )
             }
-            button.setOnClickListener {
-                if (editTextName.text?.isBlank() == true || editTextPassword.text?.isBlank() == true) {
-                    showSnackbar(getString(R.string.edit_text_empty))
-                } else {
-                    viewModel.registerUser(
-                        editTextName.text.toString(),
-                        editTextPassword.text.toString()
-                    )
-                }
-            }
         }
-        viewModel.state.observe(viewLifecycleOwner, ::processState)
     }
 
     private fun processState(state: RegistrationUiState) {
@@ -73,13 +82,12 @@ class RegistrationFragment : Fragment() {
             is RegistrationUiState.Complete -> renderCompleteState()
             is RegistrationUiState.Error.NoInternet -> renderNoInternetState()
             is RegistrationUiState.Error.AlreadyExist -> renderAlreadyExistState()
-            is RegistrationUiState.End -> Unit
         }
     }
 
     private fun renderLoadingState() {
         binding.progressBar.isVisible = true
-        binding.button.isEnabled = false
+        binding.buttonRegistration.isEnabled = false
         binding.editTextName.isEnabled = false
         binding.editTextPassword.isEnabled = false
     }
@@ -94,7 +102,7 @@ class RegistrationFragment : Fragment() {
 
     private fun renderNoInternetState() {
         binding.progressBar.isVisible = false
-        binding.button.isEnabled = true
+        binding.buttonRegistration.isEnabled = true
         binding.editTextName.isEnabled = true
         binding.editTextPassword.isEnabled = true
         showSnackbar(getString(R.string.error_internet))
@@ -102,7 +110,7 @@ class RegistrationFragment : Fragment() {
 
     private fun renderAlreadyExistState() {
         binding.progressBar.isVisible = false
-        binding.button.isEnabled = true
+        binding.buttonRegistration.isEnabled = true
         binding.editTextName.isEnabled = true
         binding.editTextPassword.isEnabled = true
         showSnackbar(getString(R.string.error_user_already_exists))

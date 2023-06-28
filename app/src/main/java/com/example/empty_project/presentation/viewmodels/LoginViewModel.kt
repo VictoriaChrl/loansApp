@@ -1,7 +1,6 @@
 package com.example.empty_project.presentation.viewmodels
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.empty_project.domain.usecase.LoginUseCase
@@ -17,36 +16,37 @@ class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase
 ) : ViewModel() {
 
-    private val _state: MutableLiveData<LoginUiState> =
-        MutableLiveData(LoginUiState.Initial)
-    val state: LiveData<LoginUiState> = _state
+    private val _event: SingleLiveEvent<LoginUiState> = SingleLiveEvent()
+    val event: LiveData<LoginUiState> = _event
 
     fun loginUser(name: String, password: String) {
-        _state.value = LoginUiState.Loading
+        _event.value = LoginUiState.Loading
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 loginUseCase(
                     name = name,
                     password = password
                 )
-                onComplete()
+                _event.postValue(LoginUiState.Complete)
             } catch (exception: Exception) {
                 handleException(exception)
             }
         }
     }
 
-    private fun onComplete() {
-        _state.postValue(LoginUiState.Complete)
-    }
-
     private fun handleException(exception: Exception) {
         when (exception) {
             is ConnectException,
             is UnknownHostException,
-            is NoRouteToHostException -> _state.postValue(LoginUiState.Error.NoInternet)
+            is NoRouteToHostException -> _event.postValue(LoginUiState.Error.NoInternet)
 
-            else -> _state.postValue(LoginUiState.Error.Unknown)
+            else -> _event.postValue(LoginUiState.Error.Unknown)
         }
+    }
+
+
+    override fun onCleared() {
+        _event.call()
+        super.onCleared()
     }
 }

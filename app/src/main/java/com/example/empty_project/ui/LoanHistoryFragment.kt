@@ -54,30 +54,46 @@ class LoanHistoryFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.swipeRefreshLayout.setOnRefreshListener{
-            viewModel.getLoans()
-            binding.swipeRefreshLayout.isRefreshing = false
-        }
 
         viewModel = ViewModelProvider(this, viewModelFactory)[LoanHistoryViewModel::class.java]
-
         viewModel.getLoans()
 
         binding.apply {
-            addButton.setOnClickListener {
-                findNavController().navigate(LoanHistoryFragmentDirections.actionLoanHistoryFragmentToLoanCreationFragment())
+
+            swipeRefreshLayout.setOnRefreshListener{
+                refreshHistoryWithSwipe()
             }
+
+            addButton.setOnClickListener {
+                toLoanCreationFragment()
+            }
+
             buttonUpdate.setOnClickListener {
                 viewModel.getLoans()
             }
+
             toolbar.menu.findItem(R.id.action_add).setOnMenuItemClickListener {
-                findNavController().navigate(LoanHistoryFragmentDirections.actionLoanHistoryFragmentToInstructionContainerFragment())
+                toLoanInstructionCreationFragment()
                 true
             }
         }
 
         viewModel.state.observe(viewLifecycleOwner, ::processState)
     }
+
+    private fun refreshHistoryWithSwipe(){
+        viewModel.getLoans()
+        binding.swipeRefreshLayout.isRefreshing = false
+    }
+
+    private fun toLoanCreationFragment() {
+        findNavController().navigate(LoanHistoryFragmentDirections.actionLoanHistoryFragmentToLoanCreationFragment())
+    }
+
+    private fun toLoanInstructionCreationFragment() {
+        findNavController().navigate(LoanHistoryFragmentDirections.actionLoanHistoryFragmentToInstructionContainerFragment())
+    }
+
 
     private fun processState(state: LoanHistoryUiState) {
         when (state) {
@@ -94,11 +110,13 @@ class LoanHistoryFragment : Fragment(){
             progressBar.isVisible = true
             errorText.isVisible = false
             buttonUpdate.isVisible = false
+            historyList.isVisible = false
         }
     }
 
     private fun renderCompleteState(state: LoanHistoryUiState.Complete) {
         binding.progressBar.isVisible = false
+        binding.historyList.isVisible = true
         if (state.list.isEmpty()) {
             binding.errorText.text = getString(R.string.loans_empty)
             binding.errorText.isVisible = true
@@ -107,12 +125,12 @@ class LoanHistoryFragment : Fragment(){
     }
 
     private fun loadLoanList(list: List<Loan>) {
-        val loanAdapter = LoanHistoryAdapter { id -> toLoanDetails(id) }
+        val loanAdapter = LoanHistoryAdapter { id -> toLoanDetailsFragment(id) }
         binding.historyList.adapter = loanAdapter
         loanAdapter.submitList(list)
     }
 
-    private fun toLoanDetails(id: Long) {
+    private fun toLoanDetailsFragment(id: Long) {
         findNavController().navigate(
             LoanHistoryFragmentDirections.actionLoanHistoryFragmentToLoanDetailsFragment(
                 id
@@ -126,6 +144,7 @@ class LoanHistoryFragment : Fragment(){
             errorText.isVisible = true
             errorText.text = getString(R.string.error_internet)
             buttonUpdate.isVisible = true
+            historyList.isVisible = false
         }
     }
 
@@ -135,6 +154,7 @@ class LoanHistoryFragment : Fragment(){
             errorText.isVisible = true
             errorText.text = getString(R.string.unknown_error)
             buttonUpdate.isVisible = true
+            historyList.isVisible = false
         }
     }
 

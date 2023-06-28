@@ -21,21 +21,11 @@ class LoanCreationViewModel @Inject constructor(
     private val getLoanConditionsUseCase: GetLoanConditionsUseCase
 ) : ViewModel() {
 
-    private val _state: MutableLiveData<LoanCreationUiState> =
+    private val _state:  MutableLiveData<LoanCreationUiState> =
         MutableLiveData(LoanCreationUiState.Initial)
     val state: LiveData<LoanCreationUiState> = _state
-
-    fun createLoan(newLoan: NewLoan) {
-        _state.value = LoanCreationUiState.LoadingLoanCreation
-        viewModelScope.launch(Dispatchers.IO) {
-            try {
-                createLoanUseCase(newLoan)
-                onCompleteLoanCreation()
-            } catch (exception: Exception) {
-                handleException(exception)
-            }
-        }
-    }
+    private val _event: SingleLiveEvent<LoanCreationUiState> = SingleLiveEvent()
+    val event: LiveData<LoanCreationUiState> = _event
 
     fun getLoanConditions() {
         _state.value = LoanCreationUiState.LoadingConditions
@@ -48,18 +38,31 @@ class LoanCreationViewModel @Inject constructor(
         }
     }
 
-    private fun onCompleteLoanCreation() {
-        _state.postValue(LoanCreationUiState.CompleteLoanCreation)
-    }
-
     private fun handleException(exception: Exception) {
         when (exception) {
             is SSLHandshakeException,
             is ConnectException,
             is UnknownHostException,
-            is NoRouteToHostException -> _state.postValue(LoanCreationUiState.Error.NoInternet)
+            is NoRouteToHostException -> _event.postValue(LoanCreationUiState.Error.NoInternet)
 
-            else -> _state.postValue(LoanCreationUiState.Error.Unknown)
+            else -> _event.postValue(LoanCreationUiState.Error.Unknown)
         }
     }
+
+    fun createLoan(newLoan: NewLoan) {
+        _event.value = LoanCreationUiState.LoadingLoanCreation
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                createLoanUseCase(newLoan)
+                onCompleteLoanCreation()
+            } catch (exception: Exception) {
+                handleException(exception)
+            }
+        }
+    }
+
+    private fun onCompleteLoanCreation() {
+        _event.postValue(LoanCreationUiState.CompleteLoanCreation)
+    }
+
 }

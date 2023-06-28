@@ -16,9 +16,9 @@
             android:id="@+id/shimmer_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="..."
+            android:text="@string/loading_conditions"
             android:textColor="@android:color/darker_gray"
-            android:textSize="40sp"
+            android:textSize="@dimen/loading_conditions"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewConditionsAmount" />
@@ -27,9 +27,9 @@
             android:id="@+id/shimmer_period"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="..."
+            android:text="@string/loading_conditions"
             android:textColor="@android:color/darker_gray"
-            android:textSize="40sp"
+            android:textSize="@dimen/loading_conditions"
             app:layout_constraintEnd_toStartOf="@+id/shimmer_percent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewConditionsPeriod" />
@@ -38,9 +38,9 @@
             android:id="@+id/shimmer_percent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="..."
+            android:text="@string/loading_conditions"
             android:textColor="@android:color/darker_gray"
-            android:textSize="40sp"
+            android:textSize="@dimen/loading_conditions"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/shimmer_period"
             app:layout_constraintTop_toBottomOf="@+id/textViewConditionsPercent" />
@@ -206,7 +206,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/period"
             app:layout_constraintTop_toBottomOf="@+id/textViewConditionsPercent" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

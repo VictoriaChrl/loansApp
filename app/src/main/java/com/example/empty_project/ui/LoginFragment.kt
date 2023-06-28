@@ -13,6 +13,7 @@ import com.example.empty_project.R
 import com.example.empty_project.databinding.FragmentUserLoginBinding
 import com.example.empty_project.presentation.states.LoginUiState
 import com.example.empty_project.presentation.viewmodels.LoginViewModel
+import com.example.empty_project.ui.util.areEditTextsBlank
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
@@ -46,19 +47,25 @@ class LoginFragment : Fragment() {
 
         viewModel = ViewModelProvider(this, viewModelFactory)[LoginViewModel::class.java]
 
+        binding.buttonLogin.setOnClickListener {
+            loginUser()
+        }
+
+        viewModel.event.observe(viewLifecycleOwner, ::processState)
+
+    }
+
+    private fun loginUser() {
         binding.apply {
-            button.setOnClickListener {
-                if (editTextName.text?.isBlank() == true || editTextPassword.text?.isBlank() == true) {
-                    showSnackbar(getString(R.string.edit_text_empty))
-                } else {
-                    viewModel.loginUser(
-                        editTextName.text.toString(),
-                        editTextPassword.text.toString()
-                    )
-                }
+            if (areEditTextsBlank(editTextName, editTextPassword)) {
+                showSnackbar(getString(R.string.edit_text_empty))
+            } else {
+                viewModel.loginUser(
+                    editTextName.text.toString(),
+                    editTextPassword.text.toString()
+                )
             }
         }
-        viewModel.state.observe(viewLifecycleOwner, ::processState)
     }
 
     private fun processState(state: LoginUiState) {
@@ -73,7 +80,7 @@ class LoginFragment : Fragment() {
 
     private fun renderLoadingState() {
         binding.progressBar.isVisible = true
-        binding.button.isEnabled = false
+        binding.buttonLogin.isEnabled = false
         binding.editTextName.isEnabled = false
         binding.editTextPassword.isEnabled = false
     }
@@ -86,7 +93,7 @@ class LoginFragment : Fragment() {
 
     private fun renderNoInternetState() {
         binding.progressBar.isVisible = false
-        binding.button.isEnabled = true
+        binding.buttonLogin.isEnabled = true
         binding.editTextName.isEnabled = true
         binding.editTextPassword.isEnabled = true
         showSnackbar(getString(R.string.error_internet))
@@ -94,7 +101,7 @@ class LoginFragment : Fragment() {
 
     private fun renderUnknownState() {
         binding.progressBar.isVisible = false
-        binding.button.isEnabled = true
+        binding.buttonLogin.isEnabled = true
         binding.editTextName.isEnabled = true
         binding.editTextPassword.isEnabled = true
         showSnackbar(getString(R.string.login_unknown_error))

@@ -2,7 +2,6 @@ package com.example.empty_project.data.model
 
 import com.example.empty_project.domain.entity.LoanStatus
 import com.google.gson.annotations.SerializedName
-import java.time.LocalDateTime
 
 data class LoanModel(
 	val amount: Long,

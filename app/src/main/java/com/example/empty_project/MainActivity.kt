@@ -2,7 +2,6 @@ package com.example.empty_project
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.navigation.fragment.NavHostFragment
 import com.example.empty_project.data.SharPrefManager
 import dagger.android.AndroidInjection

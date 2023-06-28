@@ -14,6 +14,4 @@ sealed interface RegistrationUiState {
 
         object AlreadyExist : Error
     }
-
-    object End : RegistrationUiState
 }
