@@ -55,13 +55,16 @@ class LoanCreationFragment : Fragment() {
 
         viewModel = ViewModelProvider(this, viewModelFactory)[LoanCreationViewModel::class.java]
 
+        binding.buttonUpdateLoanConditions.setOnClickListener {
+            viewModel.getLoanConditions()
+        }
+
         binding.addButton.setOnClickListener {
             createLoan()
         }
 
         viewModel.apply {
-            event.observe(viewLifecycleOwner, ::processState)
-            state.observe(viewLifecycleOwner, ::processState)
+           state.observe(viewLifecycleOwner, ::processState)
         }
     }
 
@@ -91,9 +94,13 @@ class LoanCreationFragment : Fragment() {
 
                     viewModel.createLoan(newLoan)
                 }
-            } ?: viewModel.getLoanConditions()
+            } ?: enableAddButton()
         }
 
+    }
+
+    private fun enableAddButton(){
+        binding.addButton.isEnabled = false
     }
 
     private fun processState(state: LoanCreationUiState) {
@@ -116,6 +123,8 @@ class LoanCreationFragment : Fragment() {
             shimmerAmount.startAnimation(shimmer)
             shimmerPeriod.startAnimation(shimmer)
             shimmerPercent.startAnimation(shimmer)
+            buttonUpdateLoanConditions.isEnabled = true
+            addButton.isEnabled = true
         }
     }
 
@@ -143,6 +152,9 @@ class LoanCreationFragment : Fragment() {
                 isVisible = false
             }
 
+            buttonUpdateLoanConditions.isVisible = false
+            addButton.isEnabled = true
+
             loanCondition = LoanConditions(
                 state.loanConditions.maxAmount,
                 state.loanConditions.percent,
@@ -167,8 +179,8 @@ class LoanCreationFragment : Fragment() {
 
     private fun renderErrorNoInternetState() {
         binding.apply {
+            addButton.isEnabled = loanCondition != null
             progressBar.isVisible = false
-            addButton.isEnabled = true
             editTextFirstName.isEnabled = true
             editTextLastName.isEnabled = true
             editTextAmount.isEnabled = true
@@ -183,7 +195,7 @@ class LoanCreationFragment : Fragment() {
             shimmerPeriod.animation = null
             shimmerPercent.animation = null
             progressBar.isVisible = false
-            addButton.isEnabled = true
+            addButton.isEnabled = loanCondition==null
             editTextFirstName.isEnabled = true
             editTextLastName.isEnabled = true
             editTextAmount.isEnabled = true

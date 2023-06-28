@@ -20,6 +20,7 @@
     <!-- menu info -->
     <string name="watch_info">Посмотреть инструкцию</string>
     <!-- fragment loan creation -->
+    <string name="button_upload_loan_conditions">Узнать условия</string>
     <string name="add_button_text">Оформить займ</string>
     <string name="text_conditions_title">Условия взятия займа</string>
     <string name="text_conditions_maxAmount">Вы можете взять не выходя из дома</string>

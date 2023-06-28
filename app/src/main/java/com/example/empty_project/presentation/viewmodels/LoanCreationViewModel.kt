@@ -24,8 +24,6 @@ class LoanCreationViewModel @Inject constructor(
     private val _state:  MutableLiveData<LoanCreationUiState> =
         MutableLiveData(LoanCreationUiState.Initial)
     val state: LiveData<LoanCreationUiState> = _state
-    private val _event: SingleLiveEvent<LoanCreationUiState> = SingleLiveEvent()
-    val event: LiveData<LoanCreationUiState> = _event
 
     fun getLoanConditions() {
         _state.value = LoanCreationUiState.LoadingConditions
@@ -43,14 +41,14 @@ class LoanCreationViewModel @Inject constructor(
             is SSLHandshakeException,
             is ConnectException,
             is UnknownHostException,
-            is NoRouteToHostException -> _event.postValue(LoanCreationUiState.Error.NoInternet)
+            is NoRouteToHostException -> _state.postValue(LoanCreationUiState.Error.NoInternet)
 
-            else -> _event.postValue(LoanCreationUiState.Error.Unknown)
+            else -> _state.postValue(LoanCreationUiState.Error.Unknown)
         }
     }
 
     fun createLoan(newLoan: NewLoan) {
-        _event.value = LoanCreationUiState.LoadingLoanCreation
+        _state.value = LoanCreationUiState.LoadingLoanCreation
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 createLoanUseCase(newLoan)
@@ -62,7 +60,7 @@ class LoanCreationViewModel @Inject constructor(
     }
 
     private fun onCompleteLoanCreation() {
-        _event.postValue(LoanCreationUiState.CompleteLoanCreation)
+        _state.postValue(LoanCreationUiState.CompleteLoanCreation)
     }
 
 }
