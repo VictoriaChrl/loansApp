@@ -1,5 +1,6 @@
 package com.example.empty_project.presentation.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -28,6 +29,7 @@ class LoanDetailsViewModel  @Inject constructor(
             try{
                 _state.postValue(LoanDetailsUiState.Complete(getLoanByIdUseCase(id)))
             }catch (exception: Exception){
+                Log.v("excep", exception.toString())
                 handleException(exception)
             }
         }

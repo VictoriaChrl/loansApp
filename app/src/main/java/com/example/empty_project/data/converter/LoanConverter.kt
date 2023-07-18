@@ -1,5 +1,6 @@
 package com.example.empty_project.data.converter
 
+import android.os.Build
 import com.example.empty_project.data.model.LoanConditionsModel
 import com.example.empty_project.data.model.LoanModel
 import com.example.empty_project.data.model.NewLoanModel
@@ -26,10 +27,11 @@ class LoanConverter @Inject constructor() {
         )
 
 
-    private fun toDate(stringDate: String): String {
+    fun toDate(stringDate: String): String {
         val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", Locale.getDefault())
         val date = inputFormat.parse(stringDate)
         val outputFormat = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
+        outputFormat.timeZone = TimeZone.getTimeZone("YOUR_TIMEZONE")
         return outputFormat.format(date as Date)
     }
 
