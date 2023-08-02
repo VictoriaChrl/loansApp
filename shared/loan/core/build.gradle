@@ -1,5 +1,5 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'de.mannodermaus.android-junit5'
     id 'kotlin-kapt'
@@ -10,7 +10,6 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.empty_project"
         minSdk 24
         targetSdk 33
         versionCode 1
@@ -38,8 +37,6 @@ android {
 }
 
 dependencies {
-
-//    implementation(project(":feature:loan:login"))
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.activity:activity-ktx:1.7.2'

@@ -1,0 +1,81 @@
+<resources>
+    <string name="app_name">Займы</string>
+    <!-- fragment register -->
+    <string name="register_title">Регистрация</string>
+    <string name="edit_login">Логин</string>
+    <string name="edit_password">Пароль</string>
+    <string name="button_registration">Зарегистрироваться</string>
+    <string name="text_view_already_have_account">Если у вас уже есть аккаунт, </string>
+    <string name="clickable_text_already_have_account">войдите</string>
+    <!-- fragment login -->
+    <string name="login_title">Вход</string>
+    <string name="login_button">Войти</string>
+    <!-- fragment loan history -->
+    <string name="history_title">Мои займы</string>
+    <string name="loan_amount_holder">%1$s РУБ</string>
+    <!-- loan -->
+    <string name="loan_status_approved">ОДОБРЕНА</string>
+    <string name="loan_status_rejected">ОТКЛОНЕНА</string>
+    <string name="loan_status_registered">ПРИНЯТА</string>
+    <!-- menu info -->
+    <string name="watch_info">Посмотреть инструкцию</string>
+    <!-- fragment loan creation -->
+    <string name="button_upload_loan_conditions">Узнать условия</string>
+    <string name="add_button_text">Оформить займ</string>
+    <string name="text_conditions_title">Условия взятия займа</string>
+    <string name="text_conditions_maxAmount">Вы можете взять не выходя из дома</string>
+    <string name="text_conditions_period">Сроком на</string>
+    <string name="text_conditions_percent">Ставка</string>
+    <string name="edit_hint_name">Имя</string>
+    <string name="edit_hint_surname">Фамилия</string>
+    <string name="edit_hint_amount">Сумма займа</string>
+    <string name="edit_hint_phone_number">Номер телефона</string>
+    <string name="loans_empty">У вас пока нет займов</string>
+
+    <!-- snackbar -->
+    <string name="error_internet">Проверьте подключение к интернету</string>
+    <string name="unknown_error">Что-то пошло не так</string>
+    <string name="login_unknown_error">Что-то пошло не так, проверьте заполненные данные</string>
+    <string name="error_user_already_exists">Пользователь уже существует</string>
+    <string name="edit_text_empty">Заполните данные</string>
+    <string name="edit_text_amount_incorrect">Укажите сумму займа в соответствии с условиями</string>
+    <string name="registration_success">Регистрация прошла успешно</string>
+    <string name="loan_creation_success">Заяка на займ создана!</string>
+    <!-- loan conditions -->
+    <string name="loading_conditions">...</string>
+    <string name="loan_max_amount_condition">%1$s РУБ</string>
+    <string name="loan_percent_condition">%1$s %%</string>
+    <!-- fragment loan details -->
+    <string name="loan_percent">%1$s %%</string>
+    <string name="loan_period_day">%1$s день</string>
+    <string name="loan_period_days">%1$s дней</string>
+    <string name="loan_period_of_day">%1$s дня</string>
+    <string name="loan_title">Заявка на займ от %1$s</string>
+    <string name="text_update_button">Обновить</string>
+    <string name="text_amount">Сумма займа</string>
+    <string name="text_period">Длительность</string>
+    <string name="text_date">Дата заявки</string>
+    <string name="text_percent">Ставка</string>
+    <string name="text_status">Статус</string>
+    <string name="text_data">Личные данные получателя</string>
+    <string name="text_name">Имя</string>
+    <string name="text_surname">Фамилия</string>
+    <string name="text_phone">Телефон</string>
+
+    <!-- instructions -->
+    <string name="instruction_bank">\nМожно ли получить займ в банке?\nУточните адрес банка и возможность получить займ по телефону: +7(495)234-28-34
+    </string>
+    <string name="instruction_card">\nКак получить займ на карту?\nНачиная с первого микрозайма компания ООО МКК «Страна Экспресс» предоставляет
+        возможность взять займ до зарплаты с онлайн-зачислением на карту МИР,
+        VISA или Mastercard (в т.ч. Maestro) любого российского банка.
+        После одобрения займа с вами свяжутся сотрудники банка для получения займа на карту.
+    </string>
+
+    <!-- instruction create loan -->
+    <string name="button_ok">Понятно</string>
+    <string name="instruction_title">Как получить займ?</string>
+    <string name="instruction_add_loan">Создайте заявку на займ</string>
+    <string name="instruction_fill_gaps">Ознакомтесь с условиями и заполните необходимы данные</string>
+    <string name="instruction_approved">Дождитесь одобрения заявки, и с вами свяжутся сотрудники банка для дальнейших действий</string>
+
+</resources>

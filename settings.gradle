@@ -14,3 +14,10 @@ dependencyResolutionManagement {
 }
 rootProject.name = "empty_project"
 include ':app'
+include ':shared:loan:core'
+include ':feature:loan:login'
+include ':feature:loan:register'
+include ':feature:loan:creation'
+include ':feature:loan:details'
+include ':feature:loan:history'
+include ':feature:loan:onboarding'
