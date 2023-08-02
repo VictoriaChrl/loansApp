@@ -29,7 +29,6 @@ class LoanDetailsViewModel  @Inject constructor(
             try{
                 _state.postValue(LoanDetailsUiState.Complete(getLoanByIdUseCase(id)))
             }catch (exception: Exception){
-                Log.v("excep", exception.toString())
                 handleException(exception)
             }
         }
