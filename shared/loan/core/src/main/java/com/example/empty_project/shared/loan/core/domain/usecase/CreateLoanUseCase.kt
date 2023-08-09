@@ -1,7 +1,7 @@
-package com.example.empty_project.domain.usecase
+package com.example.empty_project.shared.loan.core.domain.usecase
 
-import com.example.empty_project.domain.entity.NewLoan
-import com.example.empty_project.domain.repository.LoanRepository
+import com.example.empty_project.shared.loan.core.domain.entity.NewLoan
+import com.example.empty_project.shared.loan.core.domain.repository.LoanRepository
 
 class CreateLoanUseCase(
     private val repository: LoanRepository

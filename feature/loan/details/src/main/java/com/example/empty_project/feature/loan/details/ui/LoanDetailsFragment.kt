@@ -2,6 +2,7 @@ package com.example.empty_project.feature.loan.details.ui
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,13 +10,13 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
-import com.example.empty_project.domain.entity.util.formatLoanStatus
+import com.example.empty_project.shared.loan.core.domain.entity.util.formatLoanStatus
 import com.example.empty_project.feature.loan.details.databinding.FragmentLoanDetailsBinding
 import com.example.empty_project.feature.loan.details.presentation.LoanDetailsUiState
 import com.example.empty_project.feature.loan.details.presentation.LoanDetailsViewModel
 import com.example.empty_project.shared.loan.core.R.*
-import com.example.empty_project.ui.LoanDetailsFragmentArgs
-import com.example.empty_project.ui.util.formatLoanPeriod
+import com.example.empty_project.shared.loan.core.util.formatLoanPeriod
+import com.example.empty_project.shared.loan.core.util.navigationData
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -24,7 +25,6 @@ class LoanDetailsFragment : Fragment() {
     private var _binding: FragmentLoanDetailsBinding? = null
     private val binding get() = _binding!!
 
-    private val args: LoanDetailsFragmentArgs by navArgs()
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -51,7 +51,11 @@ class LoanDetailsFragment : Fragment() {
 
         viewModel = ViewModelProvider(this, viewModelFactory)[LoanDetailsViewModel::class.java]
 
-        viewModel.getLoan(args.id)
+        val args = arguments?.getLong("long")
+
+        Log.v("args", args.toString())
+
+//        viewModel.getLoan(args.id)
 
         viewModel.state.observe(viewLifecycleOwner, ::processState)
     }

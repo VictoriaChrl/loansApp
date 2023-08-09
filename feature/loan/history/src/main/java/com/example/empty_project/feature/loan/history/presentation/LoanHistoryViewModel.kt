@@ -1,7 +1,7 @@
 package com.example.empty_project.feature.loan.history.presentation
 
 import androidx.lifecycle.*
-import com.example.empty_project.domain.usecase.GetAllLoansUseCase
+import com.example.empty_project.shared.loan.core.domain.usecase.GetAllLoansUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.net.ConnectException

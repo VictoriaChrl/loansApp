@@ -1,9 +1,9 @@
-package com.example.empty_project.data.repository
+package com.example.empty_project.shared.loan.core.data.repository
 
-import com.example.empty_project.data.SharPrefManagerImpl
-import com.example.empty_project.data.api.LoansApi
-import com.example.empty_project.data.model.AuthModel
-import com.example.empty_project.domain.repository.UserRepository
+import com.example.empty_project.shared.loan.core.data.SharPrefManagerImpl
+import com.example.empty_project.shared.loan.core.data.api.LoansApi
+import com.example.empty_project.shared.loan.core.data.model.AuthModel
+import com.example.empty_project.shared.loan.core.domain.repository.UserRepository
 import javax.inject.Inject
 
 class UserRepositoryImpl

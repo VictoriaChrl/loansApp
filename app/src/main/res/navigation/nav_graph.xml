@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/registrationFragment"
-        android:name="com.example.empty_project.ui.RegistrationFragment"
+        android:name="com.example.empty_project.feature.loan.register.ui.RegistrationFragment"
         android:label="RegistrationFragment">
         <action
             android:id="@+id/action_registrationFragment_to_loginFragment"
@@ -15,20 +15,19 @@
     </fragment>
     <fragment
         android:id="@+id/loanCreationFragment"
-        android:name="com.example.empty_project.ui.LoanCreationFragment"
-        android:label="LoanCreationFragment" >
-    </fragment>
+        android:name="com.example.empty_project.feature.loan.creation.ui.LoanCreationFragment"
+        android:label="LoanCreationFragment" />
     <fragment
         android:id="@+id/loanDetailsFragment"
-        android:name="com.example.empty_project.ui.LoanDetailsFragment"
-        android:label="LoanDetailsFragment" >
+        android:name="com.example.empty_project.feature.loan.details.ui.LoanDetailsFragment"
+        android:label="LoanDetailsFragment">
         <argument
             android:name="id"
             app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/loanHistoryFragment"
-        android:name="com.example.empty_project.ui.LoanHistoryFragment"
+        android:name="com.example.empty_project.feature.loan.history.ui.LoanHistoryFragment"
         android:label="LoanHistoryFragment">
         <action
             android:id="@+id/action_loanHistoryFragment_to_loanDetailsFragment"
@@ -42,14 +41,14 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.empty_project.ui.LoginFragment"
-        android:label="LoginFragment" >
+        android:name="com.example.empty_project.feature.loan.login.ui.LoginFragment"
+        android:label="LoginFragment">
         <action
             android:id="@+id/action_loginFragment_to_loanHistoryFragment"
             app:destination="@id/loanHistoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/instructionFragment"
-        android:name="com.example.empty_project.ui.InstructionFragment"
+        android:name="com.example.empty_project.feature.loan.onboarding.ui.InstructionFragment"
         android:label="InstructionFragment" />
 </navigation>

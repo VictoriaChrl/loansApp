@@ -1,6 +1,6 @@
-package com.example.empty_project.data.model
+package com.example.empty_project.shared.loan.core.data.model
 
-import com.example.empty_project.domain.entity.LoanStatus
+import com.example.empty_project.shared.loan.core.domain.entity.LoanStatus
 import com.google.gson.annotations.SerializedName
 
 data class LoanModel(

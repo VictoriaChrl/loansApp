@@ -1,6 +1,6 @@
 package com.example.empty_project.di
 
-import com.example.empty_project.data.api.LoansApi
+import com.example.empty_project.shared.loan.core.data.api.LoansApi
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides

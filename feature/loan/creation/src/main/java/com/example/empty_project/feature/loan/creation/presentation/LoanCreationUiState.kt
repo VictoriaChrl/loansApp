@@ -1,6 +1,6 @@
 package com.example.empty_project.feature.loan.creation.presentation
 
-import com.example.empty_project.domain.entity.LoanConditions
+import com.example.empty_project.shared.loan.core.domain.entity.LoanConditions
 
 sealed interface LoanCreationUiState {
 

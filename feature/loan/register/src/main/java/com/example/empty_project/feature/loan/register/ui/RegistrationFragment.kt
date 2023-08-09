@@ -8,13 +8,13 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
+import com.example.empty_project.feature.loan.register.R.*
+import com.example.empty_project.feature.loan.register.databinding.FragmentRegistrationBinding
 import com.example.empty_project.shared.loan.core.R
-import com.example.empty_project.feature.loan.login.databinding.FragmentRegistrationBinding
 import com.example.empty_project.feature.loan.register.presentation.RegistrationUiState
 import com.example.empty_project.feature.loan.register.presentation.RegistrationViewModel
-import com.example.empty_project.ui.RegistrationFragmentDirections
-import com.example.empty_project.ui.util.areEditTextsBlank
+import com.example.empty_project.shared.loan.core.util.areEditTextsBlank
+import com.example.empty_project.shared.loan.core.util.navigate
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
@@ -49,9 +49,7 @@ class RegistrationFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory)[RegistrationViewModel::class.java]
 
         binding.clickableTextAlreadyHaveAccount.setOnClickListener {
-            findNavController().navigate(
-                RegistrationFragmentDirections.actionRegistrationFragmentToLoginFragment()
-            )
+            navigate(com.example.empty_project.feature.loan.register.R.id.action_registrationFragment_to_loginFragment)
         }
 
         binding.buttonRegistration.setOnClickListener {
@@ -96,9 +94,7 @@ class RegistrationFragment : Fragment() {
     private fun renderCompleteState() {
         binding.progressBar.isVisible = false
         showSnackbar(getString(R.string.registration_success))
-        findNavController().navigate(
-            RegistrationFragmentDirections.actionRegistrationFragmentToLoginFragment()
-        )
+        navigate(com.example.empty_project.feature.loan.register.R.id.action_registrationFragment_to_loginFragment)
     }
 
     private fun renderNoInternetState() {

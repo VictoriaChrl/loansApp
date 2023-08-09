@@ -1,8 +1,8 @@
-package com.example.empty_project.domain.entity.util
+package com.example.empty_project.shared.loan.core.domain.entity.util
 
 import android.content.Context
-import com.example.empty_project.R
-import com.example.empty_project.domain.entity.LoanStatus
+import com.example.empty_project.shared.loan.core.R
+import com.example.empty_project.shared.loan.core.domain.entity.LoanStatus
 
 fun formatLoanStatus(context: Context, status: LoanStatus) =
     when (status) {

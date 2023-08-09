@@ -1,8 +1,8 @@
 package com.example.empty_project.feature.loan.history.ui
 
 import androidx.recyclerview.widget.RecyclerView
-import com.example.empty_project.domain.entity.Loan
-import com.example.empty_project.domain.entity.util.formatLoanStatus
+import com.example.empty_project.shared.loan.core.domain.entity.Loan
+import com.example.empty_project.shared.loan.core.domain.entity.util.formatLoanStatus
 import com.example.empty_project.feature.loan.history.databinding.ItemLoanBinding
 import com.example.empty_project.shared.loan.core.R.*
 

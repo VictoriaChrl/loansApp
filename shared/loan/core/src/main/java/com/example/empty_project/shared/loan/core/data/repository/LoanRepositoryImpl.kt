@@ -1,12 +1,12 @@
-package com.example.empty_project.data.repository
+package com.example.empty_project.shared.loan.core.data.repository
 
-import com.example.empty_project.data.SharPrefManagerImpl
-import com.example.empty_project.data.api.LoansApi
-import com.example.empty_project.data.converter.LoanConverter
-import com.example.empty_project.domain.entity.Loan
-import com.example.empty_project.domain.entity.LoanConditions
-import com.example.empty_project.domain.entity.NewLoan
-import com.example.empty_project.domain.repository.LoanRepository
+import com.example.empty_project.shared.loan.core.data.SharPrefManagerImpl
+import com.example.empty_project.shared.loan.core.data.api.LoansApi
+import com.example.empty_project.shared.loan.core.data.converter.LoanConverter
+import com.example.empty_project.shared.loan.core.domain.entity.Loan
+import com.example.empty_project.shared.loan.core.domain.entity.LoanConditions
+import com.example.empty_project.shared.loan.core.domain.entity.NewLoan
+import com.example.empty_project.shared.loan.core.domain.repository.LoanRepository
 import javax.inject.Inject
 
 class LoanRepositoryImpl @Inject constructor(

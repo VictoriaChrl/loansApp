@@ -1,6 +1,6 @@
 package com.example.empty_project.feature.loan.history.presentation
 
-import com.example.empty_project.domain.entity.Loan
+import com.example.empty_project.shared.loan.core.domain.entity.Loan
 
 sealed interface LoanHistoryUiState {
 

@@ -8,13 +8,13 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
+import com.example.empty_project.feature.loan.login.R
 import com.example.empty_project.feature.loan.login.databinding.FragmentUserLoginBinding
 import com.example.empty_project.feature.loan.login.presentation.LoginUiState
 import com.example.empty_project.feature.loan.login.presentation.LoginViewModel
 import com.example.empty_project.shared.loan.core.R.*
-import com.example.empty_project.ui.LoginFragmentDirections
-import com.example.empty_project.ui.util.areEditTextsBlank
+import com.example.empty_project.shared.loan.core.util.areEditTextsBlank
+import com.example.empty_project.shared.loan.core.util.navigate
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
@@ -87,9 +87,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun renderCompleteState() {
-        findNavController().navigate(
-            LoginFragmentDirections.actionLoginFragmentToLoanHistoryFragment()
-        )
+        navigate(R.id.action_loginFragment_to_loanHistoryFragment)
     }
 
     private fun renderNoInternetState() {

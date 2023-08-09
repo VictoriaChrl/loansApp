@@ -1,4 +1,4 @@
-package com.example.empty_project.domain.entity
+package com.example.empty_project.shared.loan.core.domain.entity
 
 data class NewLoan(
     val amount: Long,

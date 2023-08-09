@@ -1,4 +1,4 @@
-package com.example.empty_project.data
+package com.example.empty_project.shared.loan.core.data
 
 import android.content.Context
 import androidx.security.crypto.EncryptedSharedPreferences

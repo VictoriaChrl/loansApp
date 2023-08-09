@@ -1,14 +1,10 @@
-package com.example.empty_project.data.api
+package com.example.empty_project.shared.loan.core.data.api
 
-import com.example.empty_project.data.model.AuthModel
-import com.example.empty_project.data.model.LoanConditionsModel
-import com.example.empty_project.data.model.LoanModel
-import com.example.empty_project.data.model.NewLoanModel
-import com.example.empty_project.domain.entity.NewLoan
-import okhttp3.RequestBody
+import com.example.empty_project.shared.loan.core.data.model.AuthModel
+import com.example.empty_project.shared.loan.core.data.model.LoanConditionsModel
+import com.example.empty_project.shared.loan.core.data.model.LoanModel
+import com.example.empty_project.shared.loan.core.data.model.NewLoanModel
 import okhttp3.ResponseBody
-import retrofit2.Call
-import retrofit2.Response
 import retrofit2.http.*
 
 interface LoansApi {

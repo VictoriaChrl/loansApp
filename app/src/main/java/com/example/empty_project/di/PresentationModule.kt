@@ -2,7 +2,11 @@ package com.example.empty_project.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.empty_project.presentation.viewmodels.*
+import com.example.empty_project.feature.loan.creation.presentation.LoanCreationViewModel
+import com.example.empty_project.feature.loan.details.presentation.LoanDetailsViewModel
+import com.example.empty_project.feature.loan.history.presentation.LoanHistoryViewModel
+import com.example.empty_project.feature.loan.login.presentation.LoginViewModel
+import com.example.empty_project.feature.loan.register.presentation.RegistrationViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

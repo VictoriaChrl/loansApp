@@ -39,7 +39,13 @@ android {
 
 dependencies {
 
-//    implementation(project(":feature:loan:login"))
+    implementation(project(":shared:loan:core"))
+    implementation(project(":feature:loan:login"))
+    implementation(project(":feature:loan:register"))
+    implementation(project(":feature:loan:creation"))
+    implementation(project(":feature:loan:details"))
+    implementation(project(":feature:loan:history"))
+    implementation(project(":feature:loan:onboarding"))
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.activity:activity-ktx:1.7.2'
@@ -70,7 +76,7 @@ dependencies {
 
     def retrofitVersion = '2.9.0'
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
-    implementation  "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     implementation "com.squareup.okhttp3:okhttp:4.10.0"
 
     implementation "androidx.security:security-crypto:1.0.0-alpha02"

@@ -1,8 +1,8 @@
 package com.example.empty_project.di
 
-import com.example.empty_project.domain.repository.LoanRepository
-import com.example.empty_project.domain.repository.UserRepository
-import com.example.empty_project.domain.usecase.*
+import com.example.empty_project.shared.loan.core.domain.repository.LoanRepository
+import com.example.empty_project.shared.loan.core.domain.repository.UserRepository
+import com.example.empty_project.shared.loan.core.domain.usecase.*
 import dagger.Module
 import dagger.Provides
 

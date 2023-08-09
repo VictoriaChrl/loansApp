@@ -3,7 +3,7 @@ package com.example.empty_project.feature.loan.login.presentation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.empty_project.domain.usecase.LoginUseCase
+import com.example.empty_project.shared.loan.core.domain.usecase.LoginUseCase
 import com.example.empty_project.shared.loan.core.SingleLiveEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

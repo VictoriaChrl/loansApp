@@ -1,8 +1,7 @@
-package com.example.empty_project.domain.usecase
+package com.example.empty_project.shared.loan.core.domain.usecase
 
-import com.example.empty_project.domain.entity.Loan
-import com.example.empty_project.domain.entity.LoanStatus
-import com.example.empty_project.domain.repository.LoanRepository
+import com.example.empty_project.shared.loan.core.domain.entity.Loan
+import com.example.empty_project.shared.loan.core.domain.repository.LoanRepository
 
 class GetAllLoansUseCase(private val repository: LoanRepository) {
 

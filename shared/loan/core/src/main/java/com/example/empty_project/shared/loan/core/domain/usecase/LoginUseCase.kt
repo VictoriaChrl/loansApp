@@ -1,6 +1,6 @@
-package com.example.empty_project.domain.usecase
+package com.example.empty_project.shared.loan.core.domain.usecase
 
-import com.example.empty_project.domain.repository.UserRepository
+import com.example.empty_project.shared.loan.core.domain.repository.UserRepository
 
 class LoginUseCase(
     private val repository: UserRepository

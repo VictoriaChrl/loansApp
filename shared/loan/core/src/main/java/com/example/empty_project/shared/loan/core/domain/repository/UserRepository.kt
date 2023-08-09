@@ -1,4 +1,4 @@
-package com.example.empty_project.domain.repository
+package com.example.empty_project.shared.loan.core.domain.repository
 
 interface UserRepository {
 

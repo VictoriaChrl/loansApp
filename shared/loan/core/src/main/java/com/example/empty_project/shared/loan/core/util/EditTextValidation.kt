@@ -1,4 +1,4 @@
-package com.example.empty_project.ui.util
+package com.example.empty_project.shared.loan.core.util
 
 import android.widget.EditText
 

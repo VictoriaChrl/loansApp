@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.example.empty_project.domain.entity.Loan
+import com.example.empty_project.shared.loan.core.domain.entity.Loan
 import com.example.empty_project.feature.loan.history.databinding.ItemLoanBinding
 
 class LoanHistoryAdapter(private val onItemClicked: (id: Long) -> Unit) :

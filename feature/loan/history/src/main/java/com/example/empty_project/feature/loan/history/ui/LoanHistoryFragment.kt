@@ -9,13 +9,13 @@ import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
-import com.example.empty_project.domain.entity.Loan
+import com.example.empty_project.feature.loan.history.R
+import com.example.empty_project.shared.loan.core.domain.entity.Loan
 import com.example.empty_project.feature.loan.history.databinding.FragmentLoanHistoryBinding
 import com.example.empty_project.feature.loan.history.presentation.LoanHistoryUiState
 import com.example.empty_project.feature.loan.history.presentation.LoanHistoryViewModel
 import com.example.empty_project.shared.loan.core.R.*
-import com.example.empty_project.ui.LoanHistoryFragmentDirections
+import com.example.empty_project.shared.loan.core.util.navigate
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -87,11 +87,11 @@ class LoanHistoryFragment : Fragment(){
     }
 
     private fun toLoanCreationFragment() {
-        findNavController().navigate(LoanHistoryFragmentDirections.actionLoanHistoryFragmentToLoanCreationFragment())
+       navigate(R.id.action_loanHistoryFragment_to_loanCreationFragment)
     }
 
     private fun toLoanInstructionCreationFragment() {
-        findNavController().navigate(LoanHistoryFragmentDirections.actionLoanHistoryFragmentToInstructionContainerFragment())
+        navigate(R.id.action_loanHistoryFragment_to_instructionContainerFragment)
     }
 
 
@@ -131,11 +131,7 @@ class LoanHistoryFragment : Fragment(){
     }
 
     private fun toLoanDetailsFragment(id: Long) {
-        findNavController().navigate(
-            LoanHistoryFragmentDirections.actionLoanHistoryFragmentToLoanDetailsFragment(
-                id
-            )
-        )
+        navigate(R.id.action_loanHistoryFragment_to_loanDetailsFragment)
     }
 
     private fun renderErrorNoInternetState() {

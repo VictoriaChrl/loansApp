@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<item name="action_loanHistoryFragment_to_loanCreationFragment" type="id" />
+	<item name="action_loanHistoryFragment_to_loanDetailsFragment" type="id" />
+	<item name="action_loanHistoryFragment_to_instructionContainerFragment" type="id" />
+</resources>

@@ -1,12 +1,11 @@
-package com.example.empty_project.data.converter
+package com.example.empty_project.shared.loan.core.data.converter
 
-import android.os.Build
-import com.example.empty_project.data.model.LoanConditionsModel
-import com.example.empty_project.data.model.LoanModel
-import com.example.empty_project.data.model.NewLoanModel
-import com.example.empty_project.domain.entity.Loan
-import com.example.empty_project.domain.entity.LoanConditions
-import com.example.empty_project.domain.entity.NewLoan
+import com.example.empty_project.shared.loan.core.data.model.LoanConditionsModel
+import com.example.empty_project.shared.loan.core.data.model.LoanModel
+import com.example.empty_project.shared.loan.core.data.model.NewLoanModel
+import com.example.empty_project.shared.loan.core.domain.entity.Loan
+import com.example.empty_project.shared.loan.core.domain.entity.LoanConditions
+import com.example.empty_project.shared.loan.core.domain.entity.NewLoan
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject

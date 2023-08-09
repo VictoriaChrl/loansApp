@@ -4,8 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.empty_project.domain.usecase.GetLoanByIdUseCase
-import com.example.empty_project.feature.loan.details.presentation.LoanDetailsUiState
+import com.example.empty_project.shared.loan.core.domain.usecase.GetLoanByIdUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.net.ConnectException

@@ -3,7 +3,7 @@ package com.example.empty_project
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
-import com.example.empty_project.data.SharPrefManager
+import com.example.empty_project.shared.loan.core.data.SharPrefManager
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector

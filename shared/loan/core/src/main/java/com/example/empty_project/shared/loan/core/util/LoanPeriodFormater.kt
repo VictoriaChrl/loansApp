@@ -1,7 +1,7 @@
-package com.example.empty_project.ui.util
+package com.example.empty_project.shared.loan.core.util
 
 import android.content.Context
-import com.example.empty_project.R
+import com.example.empty_project.shared.loan.core.R
 
 fun formatLoanPeriod(context: Context, day: Int): String {
     return when {
