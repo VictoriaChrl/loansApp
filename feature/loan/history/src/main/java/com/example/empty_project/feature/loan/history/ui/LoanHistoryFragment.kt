@@ -17,6 +17,7 @@ import com.example.empty_project.feature.loan.history.presentation.LoanHistoryVi
 import com.example.empty_project.shared.loan.core.R.*
 import com.example.empty_project.shared.loan.core.util.navigate
 import dagger.android.support.AndroidSupportInjection
+import java.io.Serializable
 import javax.inject.Inject
 
 class LoanHistoryFragment : Fragment(){
@@ -131,7 +132,7 @@ class LoanHistoryFragment : Fragment(){
     }
 
     private fun toLoanDetailsFragment(id: Long) {
-        navigate(R.id.action_loanHistoryFragment_to_loanDetailsFragment)
+        navigate(R.id.action_loanHistoryFragment_to_loanDetailsFragment, data = id)
     }
 
     private fun renderErrorNoInternetState() {

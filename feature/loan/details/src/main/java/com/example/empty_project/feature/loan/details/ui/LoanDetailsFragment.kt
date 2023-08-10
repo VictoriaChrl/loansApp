@@ -51,11 +51,7 @@ class LoanDetailsFragment : Fragment() {
 
         viewModel = ViewModelProvider(this, viewModelFactory)[LoanDetailsViewModel::class.java]
 
-        val args = arguments?.getLong("long")
-
-        Log.v("args", args.toString())
-
-//        viewModel.getLoan(args.id)
+        navigationData?.let { viewModel.getLoan(it) }
 
         viewModel.state.observe(viewLifecycleOwner, ::processState)
     }

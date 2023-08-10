@@ -22,7 +22,7 @@
         android:name="com.example.empty_project.feature.loan.details.ui.LoanDetailsFragment"
         android:label="LoanDetailsFragment">
         <argument
-            android:name="id"
+            android:name="navigation_data"
             app:argType="long" />
     </fragment>
     <fragment
