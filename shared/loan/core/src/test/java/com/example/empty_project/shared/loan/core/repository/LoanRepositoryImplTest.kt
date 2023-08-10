@@ -1,15 +1,16 @@
-package com.example.empty_project.data.repository
+package com.example.empty_project.shared.loan.core.repository
 
-import com.example.empty_project.data.SharPrefManagerImpl
+import com.example.empty_project.shared.loan.core.data.SharPrefManagerImpl
+import com.example.empty_project.shared.loan.core.data.api.LoansApi
+import com.example.empty_project.shared.loan.core.data.converter.LoanConverter
+import com.example.empty_project.shared.loan.core.data.model.LoanConditionsModel
+import com.example.empty_project.shared.loan.core.data.model.LoanModel
+import com.example.empty_project.shared.loan.core.data.model.NewLoanModel
+import com.example.empty_project.shared.loan.core.data.repository.LoanRepositoryImpl
+import com.example.empty_project.shared.loan.core.domain.entity.Loan
+import com.example.empty_project.shared.loan.core.domain.entity.LoanConditions
+import com.example.empty_project.shared.loan.core.domain.entity.NewLoan
 import kotlinx.coroutines.test.runTest
-import com.example.empty_project.data.api.LoansApi
-import com.example.empty_project.data.converter.LoanConverter
-import com.example.empty_project.data.model.LoanConditionsModel
-import com.example.empty_project.data.model.LoanModel
-import com.example.empty_project.data.model.NewLoanModel
-import com.example.empty_project.domain.entity.Loan
-import com.example.empty_project.domain.entity.LoanConditions
-import com.example.empty_project.domain.entity.NewLoan
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
