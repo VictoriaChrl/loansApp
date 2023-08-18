@@ -3,6 +3,8 @@ package com.example.empty_project.shared.loan.core.repository
 import com.example.empty_project.shared.loan.core.data.SharPrefManagerImpl
 import com.example.empty_project.shared.loan.core.data.api.LoansApi
 import com.example.empty_project.shared.loan.core.data.converter.LoanConverter
+import com.example.empty_project.shared.loan.core.data.database.LoanDao
+import com.example.empty_project.shared.loan.core.data.database.LoanEntity
 import com.example.empty_project.shared.loan.core.data.model.LoanConditionsModel
 import com.example.empty_project.shared.loan.core.data.model.LoanModel
 import com.example.empty_project.shared.loan.core.data.model.NewLoanModel
@@ -34,7 +36,9 @@ class LoanRepositoryImplTest {
     private val loanConditionsModel: LoanConditionsModel = mock()
     private val newLoan: NewLoan = mock()
     private val newLoanModel: NewLoanModel = mock()
-    private val loanRepository = LoanRepositoryImpl(loansApi, converterLoan, sharPrefManager)
+    private val loanEntity: LoanEntity = mock()
+    private val loanDao: LoanDao = mock()
+    private val loanRepository = LoanRepositoryImpl(loanDao,loansApi, converterLoan, sharPrefManager)
 
     @BeforeEach
     fun setup() {
@@ -44,6 +48,8 @@ class LoanRepositoryImplTest {
         whenever(converterLoan.convertLoan(loanModel)).thenReturn(loan)
         whenever(converterLoan.convertLoanConditions(loanConditionsModel)).thenReturn(loanConditions)
         whenever(converterLoan.convertNewLoan(newLoan)).thenReturn(newLoanModel)
+        whenever(converterLoan.convertLoanEntityToLoan(loanEntity)).thenReturn(loan)
+        whenever(converterLoan.convertLoanToLoanEntity(loan)).thenReturn(loanEntity)
     }
 
     @Test
@@ -52,6 +58,7 @@ class LoanRepositoryImplTest {
         val expectedLoans = listOf(loan)
 
         whenever(loansApi.getAllLoans(any())) doReturn arrayOf(loanModel)
+        whenever(loanDao.getAllLoans()) doReturn listOf(loanEntity)
 
         val result = loanRepository.getAllLoans()
 
