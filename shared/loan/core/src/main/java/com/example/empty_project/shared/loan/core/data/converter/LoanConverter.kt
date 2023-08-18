@@ -1,5 +1,6 @@
 package com.example.empty_project.shared.loan.core.data.converter
 
+import com.example.empty_project.shared.loan.core.data.database.LoanEntity
 import com.example.empty_project.shared.loan.core.data.model.LoanConditionsModel
 import com.example.empty_project.shared.loan.core.data.model.LoanModel
 import com.example.empty_project.shared.loan.core.data.model.NewLoanModel
@@ -11,6 +12,32 @@ import java.util.*
 import javax.inject.Inject
 
 class LoanConverter @Inject constructor() {
+
+    fun convertLoanEntityToLoan(from: LoanEntity): Loan =
+        Loan(
+            amount = from.amount,
+            firstName = from.firstName,
+            lastName = from.lastName,
+            percent = from.percent,
+            period = from.period,
+            phoneNumber = from.phoneNumber,
+            id = from.id,
+            date = from.date,
+            status = from.status,
+        )
+
+    fun convertLoanToLoanEntity(from: Loan): LoanEntity =
+        LoanEntity(
+            amount = from.amount,
+            firstName = from.firstName,
+            lastName = from.lastName,
+            percent = from.percent,
+            period = from.period,
+            phoneNumber = from.phoneNumber,
+            id = from.id,
+            date = from.date,
+            status = from.status,
+        )
 
     fun convertLoan(from: LoanModel): Loan =
         Loan(

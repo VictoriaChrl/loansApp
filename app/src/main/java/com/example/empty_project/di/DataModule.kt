@@ -4,6 +4,8 @@ import android.app.Application
 import android.content.Context
 import com.example.empty_project.shared.loan.core.data.SharPrefManager
 import com.example.empty_project.shared.loan.core.data.SharPrefManagerImpl
+import com.example.empty_project.shared.loan.core.data.database.LoanDao
+import com.example.empty_project.shared.loan.core.data.database.LoansDatabase
 import com.example.empty_project.shared.loan.core.data.repository.LoanRepositoryImpl
 import com.example.empty_project.shared.loan.core.data.repository.UserRepositoryImpl
 import com.example.empty_project.shared.loan.core.domain.repository.LoanRepository
@@ -11,6 +13,7 @@ import com.example.empty_project.shared.loan.core.domain.repository.UserReposito
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import javax.inject.Singleton
 
 @Module
 interface DataModule {
@@ -23,6 +26,14 @@ interface DataModule {
 
     @Binds
     fun bindSharedPreferences(manager: SharPrefManagerImpl): SharPrefManager
+
+    companion object{
+        @Provides
+        @Singleton
+        fun provideLoansDao(app: Application): LoanDao =
+            LoansDatabase.getInstance(app).loanDao()
+    }
+
 }
 
 @Module

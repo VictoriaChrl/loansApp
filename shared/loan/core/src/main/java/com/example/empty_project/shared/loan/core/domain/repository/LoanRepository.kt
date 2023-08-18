@@ -13,4 +13,6 @@ interface LoanRepository {
     suspend fun createLoan(newLoan: NewLoan)
 
     suspend fun getLoanConditions(): LoanConditions
+
+
 }
